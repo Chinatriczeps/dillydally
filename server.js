@@ -13,6 +13,8 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const fetch       = require('node-fetch')
+const { foodCategory, movieCategory } = require('./api.js')()
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -42,6 +44,55 @@ app.use("/api/users", usersRoutes(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+// Register a new user
+app.post('/register', (req, res) => {
+  res.send('Registering user')
+})
+
+// Login user
+app.post('/login', (req, res) => {
+  res.send('Logged in')
+})
+
+// Logout user
+app.post('/logout', (req, res) => {
+  res.send('Logged out')
+})
+
+// Edit user profile information
+app.post('/users/:id/edit', (req, res) => {
+  res.send('User updated')
+})
+
+// Editing category of each todo
+app.post('/todo/:id/edit', (req, res) => {
+  res.send('Todo updated')
+})
+
+// Deleting a todo
+app.post('/todo/:id/delete', (req, res) => {
+  res.send('Todo deleted')
+})
+
+// Adding a new todo
+app.post('/todo/new', (req, res) => {
+  foodCategory(req.body.text)
+  .then((result) => {
+    if (result) {
+      res.send('food')
+    } else {
+      movieCategory(req.body.text)
+      .then((result) => {
+        if(result) {
+          res.send('movie')
+        } else {
+          res.send('not found')
+        }
+      })
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
