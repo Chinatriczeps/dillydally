@@ -1,7 +1,22 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   background-color: #EEE;
+  font-family: 'Fugaz One', cursive;
 
   h1 {
     color: #244751;
   }
+  main {
+    margin: auto;
+    width: 450px;
+    height: auto;
+    background: #ffffff;
+  }
 }
+
