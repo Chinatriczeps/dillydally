@@ -1,0 +1,40 @@
+
+ nav {
+  height: 5em;
+  background: #9ACCD3;
+  width: 100%;
+  padding: 0 2em 0 2em;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+
+  .header {
+    line-height: 2.5em;
+    float: left;
+    color: #e8fdff;
+    margin-left: 1em;
+    font-size: 200%;
+  }
+
+  button {
+      margin: 1em 0 0 1em ;
+      height: 3em;
+      width: 6em;
+      color: #9ACCD3;
+      border: 1px solid #000000;
+      background: #EBFAFD;
+      float: right;
+      padding: 0 0 0 0;
+      font-family: inherit;
+      font-size: 1em;
+      border-radius: 10px;
+  
+  }
+
+  button:hover {
+      background: #ffffff;
+  }
+
+
+}

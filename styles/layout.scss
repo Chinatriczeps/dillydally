@@ -1,3 +1,6 @@
+$font-stack:     'Fugaz One', cursive;
+$primary-color:  #244751;
+
 html {
   box-sizing: border-box;
 }
@@ -7,16 +10,40 @@ html {
 
 body {
   background-color: #EEE;
-  font-family: 'Fugaz One', cursive;
+  font-family: $font-stack;
+  margin-top: 10em; 
 
-  h1 {
-    color: #244751;
+  form {
+
+    textarea {
+      float: center;
+      width: 300px;
+      height: 24px;
+      resize: none;
+      margin-bottom: 1em;
   }
-  main {
-    margin: auto;
-    width: 450px;
+}
+
+  ul {
+    width: 13em;
     height: auto;
-    background: #ffffff;
+    background:white;
+    border: black 10px;
+    float: left;
+    padding: 0;
+    margin: 1em;
+
+    li {
+      margin-left: 2em;
+    }
+
+    h4 {
+      background: grey;
+      width: 100%;
+      font-family: $font-stack;
+      margin: 0;
+
+    }
   }
 }
 

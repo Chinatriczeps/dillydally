@@ -5,6 +5,7 @@
 
     <!-- External CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Externla CSS-->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -15,15 +16,49 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
     <!-- App Stylesheets -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
 
+  <nav>
+    <!-- <span class="glyphicon glyphicon-tasks"> -->
+    <span class="header">DillyDally</span>
+    <button>register</button>
+    <button>login</button>
+  </nav>
+
   <body>
-    <h1>DillyDally</h1>
-    <main></main>
+
+      <form> 
+        <!-- action='/tweets' Method='POST' -->
+        <textarea name="text" placeholder="What were you recommnded?"></textarea>
+        <!-- <span class="emptyError">Please type !</span>
+        <span class="charError" >Meow has to many characters!</span> -->
+        <input type="submit" value="submit">
+      </form>
+   
+  <ul class="toeat">
+      <h4>To Eat</h4>
+      <li>Testing</li>
+
+    </ul>
+    <ul class="tobuy">
+      <h4>To Buy</h4>
+      <li>Testing</li>
+    </ul>
+    <ul class="towatch">
+      <h4>To Watch</h4>
+      <li>Testing</li>
+    </ul>
+    <ul class="toread">
+      <h4>To Read</h4>
+      <li>Testing</li>
+    </ul> 
   </body>
 </html>
 
