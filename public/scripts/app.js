@@ -14,24 +14,86 @@ $(document).ready(function() {
 
   })
 
+  // console.log(
+  // $ajax.
+
+
+  // //Loading new tweets and rending them to page
+  // function loadTweets() {
+  //   $.ajax('/api/todo', { method: 'GET' })
+  //   .then(function (tweetJSON) {
+  //     renderTweets(tweetJSON);
+  //   });
+  // }
+
+  // function renderTweets(tweets) {
+    
+  //   for (let userData in tweets) {
+    
+  //     let tweet = tweets[userData];
+  //     let newComment = createTweetElement(tweet)
+  //   //adding tweet to top of list
+  //       $('.tweets-container').prepend(newComment)
+  //     }
+  //   }
+
+  function getListContent(data) {
+    $.ajax('/api/todo')
+    .then(function (data) {
+      for ( let itemID in data) {
+
+      let category = data[itemID].category
+      let content = data[itemID].content
+      createListContent(category, content)
+      //If catagory in data base matches catagory of list add to that list
+     
+
+      }
+    })
+  };
+
+  getListContent()
+
+
+
+  function createListContent(category, content) {
+    console.log(content)
+    console.log(category)
+
+    let $textContent = $('<li>').text(content)
+
+    $('.'+category).append($textContent)
+
+    return content
+
+  };
+
+
 })
 
 
+  // function categorizeListContent(category, content) {
+  //   let $textContent;
+  //   if (category === 'foods') {
+  //     createListContent(category, content)
+  //   }
 
-
-function createListContent(content) {
-
-  let $content = $('<ul>')
-  // let $textContent = $('<li>').text(
-
-  content.append($textcontent)
-
-  return content
-
-}
+  // }
 
 
 
+//   function renderListContent(renderData) {
+//     $.ajax('/api/todo')
+//     .then(function (renderData) {
+//       for ( let itemID in renderData) {
+    
+//       //If catagory in data base matches catagory of list add to that list
+//       createListContent(renderData[itemID].content);
+//       }
+//     })
+//   };
+
+// renderListContent()
 
 
 

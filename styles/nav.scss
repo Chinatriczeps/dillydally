@@ -19,7 +19,7 @@
   overflow: visible;
 
 
-  .header {
+   .header {
     line-height: 2.5em;
     float: left;
     color: #e8fdff;
@@ -30,7 +30,7 @@
 
   
     button {
-      margin: 1em 0 0 1em ;
+      margin: 1.5em 0 0 1em ;
       height: 2em;
       width: 6em;
       color: #9ACCD3;
@@ -53,7 +53,6 @@
 
 
 @media screen 
-// and (min-width: 0px)
 and (max-width: 742px) {
 
   nav .loginform, .registerform {
