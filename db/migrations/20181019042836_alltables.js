@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
       table.string('content').notNull();
       table.string('category').notNull();
       table.integer('user_id').references('id').inTable('users');
-      table.date('date_created').notNull();
+      table.timestamps(true, true)
       table.boolean('active').notNull();
    })
 };

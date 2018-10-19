@@ -42,6 +42,19 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 app.use('/api/todo', todoRoutes(knex));
 
+// Functions
+
+// Function to insert data to the right category
+const insertToCategory = (category, content) => {
+  return knex('todo').returning('*')
+  .insert({
+    content: content,
+    category: category,
+    user_id: 1,
+    active: true
+  })
+}
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
@@ -77,26 +90,35 @@ app.post('/todo/:id/delete', (req, res) => {
   res.send('Todo deleted')
 })
 
+
 // Adding a new todo
 app.post('/todo/new', (req, res) => {
-  foodCategory(req.body.text)
+  bookCategory(req.body.text)
   .then((result) => {
     if (result) {
-      res.send('food')
+      insertToCategory('Book', req.body.text).then(() => {
+        res.redirect('/')
+      })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
-          res.send('movie')
+          insertToCategory('Film', req.body.text).then(() => {
+            res.redirect('/')
+          })
         } else {
-          bookCategory(req.body.text)
+          foodCategory(req.body.text)
           .then((result) => {
             if (result) {
-              res.send('book')
+              insertToCategory('Food', req.body.text).then(() => {
+                res.redirect('/')
+              })
             } else {
               productCategory(req.body.text)
               .then((result) => {
-                res.send('product')
+                insertToCategory('Product', req.body.text).then(() => {
+                  res.redirect('/')
+                })
               })
             }
           })
