@@ -1,0 +1,35 @@
+ 
+  .loginform {
+    display:none;
+
+  }
+  
+  .registerform {
+    display: none;
+
+  }
+
+  .loginform, .registerform {
+    float: right;
+    // top: 0;
+    // bottom: 0;
+
+    margin-top: 5em;
+    // margin-left: 5em;
+    // margin-top: 3.65em;
+    background: red;
+    width: 250px;
+    height: auto;
+
+    textarea {
+      width: 150px;
+    }
+
+    h4 {
+      font-family: inherit;
+    }
+    button {
+      height: 1.5em;
+      margin-bottom: 1em;
+    }
+  }

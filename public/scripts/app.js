@@ -18,6 +18,19 @@ $(document).ready(function() {
 
 
 
+function createListContent(content) {
+
+  let $content = $('<ul>')
+  // let $textContent = $('<li>').text(
+
+  content.append($textcontent)
+
+  return content
+
+}
+
+
+
 
 
 
@@ -39,14 +52,6 @@ $(document).ready(function() {
 
 
 
-// function createListContent(content) {
-
-//   // let list = $('<li>')
-//   // let textContent = $('<li>'>.text(.
-
-//   return content
-
-// }
 
 
 // function createTweetElement(tweet) {
