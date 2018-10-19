@@ -14,7 +14,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const fetch       = require('node-fetch')
-const { foodCategory, movieCategory } = require('./api.js')()
+const { foodCategory, movieCategory, productCategory, bookCategory } = require('./api.js')()
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -84,10 +84,20 @@ app.post('/todo/new', (req, res) => {
     } else {
       movieCategory(req.body.text)
       .then((result) => {
-        if(result) {
+        if (result) {
           res.send('movie')
         } else {
-          res.send('not found')
+          bookCategory(req.body.text)
+          .then((result) => {
+            if (result) {
+              res.send('book')
+            } else {
+              productCategory(req.body.text)
+              .then((result) => {
+                res.send('product')
+              })
+            }
+          })
         }
       })
     }

@@ -1,23 +1,24 @@
 const fetch = require('node-fetch')
+require('dotenv').config();
 
 const category = () => {
 
   const foodCategory = (input) => {
 
-   return fetch(`https://api.yelp.com/v3/categories/${input}`, {
+   return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`, {
       headers: {
-        'Authorization': 'Bearer rr7qz1TcZW_C2Z0A1CMl6LjkaB5MDgKSR-c_3QTqHtMOflLHNwp-fNGIRx3u85HyEvEOx5JnMIliQpFvB1crJd-Sz4zzPpm_GLlMEQPFAmqLEH_zfomvPB2qXs7HW3Yx'
+        'Authorization': `Bearer ${process.env.YELP_API}`
       }
     }).then((res) => {
       return res.json()
     }).then((data) => {
-      return !data.error
+      return data.count > 1
     })
   }
 
   const movieCategory = (input) => {
 
-    return fetch(`http://www.omdbapi.com/?apikey=78a67806&t=${input}`)
+    return fetch(`http://www.omdbapi.com/?apikey=${process.env.MOVIE_API}&t=${input}`)
     .then((res) => {
       return res.json()
     }).then((data) => {
@@ -25,12 +26,36 @@ const category = () => {
     })
   }
 
+  const productCategory = (input) => {
+
+    return fetch(`http://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=${process.env.PRODUCT_API}&siteid=0&version=967&QueryKeywords=${input}&AvailableItemsOnly=true&MaxEntries=1`)
+    .then((res) => {
+      return res.json()
+    }).then((data) => {
+      return !data.Errors
+    })
+  }
+
+  const bookCategory = (input) => {
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=1&filter=full`)
+    .then((res) => {
+      return res.json()
+    }).then((data) => {
+      return data.totalItems > 0
+    })
+  }
+
   return {
     foodCategory,
-    movieCategory
+    movieCategory,
+    productCategory,
+    bookCategory
   }
 
 }
+
+const { productCategory, movieCategory, foodCategory, bookCategory } = category()
+
 
 module.exports = category
 
