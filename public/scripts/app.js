@@ -14,24 +14,34 @@ $(document).ready(function() {
   
   })
 
+
+
+
+
+  function catagorizeListContent(listData) {
+    $.ajax('/#database', { method: 'GET' })
+    .then(function (listData) {
+      console.log(listData)
+      //If catagory in data base matches catagory of list add to that list
+      createListContent(listData);
+  });
+
+
+
+
+  function createListContent(content) {
+
+    let $content = $('<ul>')
+    // let $textContent = $('<li>').text(.cont).class(varcatgory)
+
+    content.append($textcontent)
+
+    return content
+
+  };
+
+
 })
-
-
-
-
-function createListContent(content) {
-
-  let $content = $('<ul>')
-  // let $textContent = $('<li>').text(
-
-  content.append($textcontent)
-
-  return content
-
-}
-
-
-
 
 
 
