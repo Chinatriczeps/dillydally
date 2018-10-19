@@ -5,13 +5,13 @@ $(document).ready(function() {
   $( ".loginbutton" ).click(function() {
     $( ".loginform" ).slideToggle("slow")
     $( ".registerform" ).hide()
-   
+
   })
 
   $( ".registerbutton" ).click(function() {
     $( ".registerform" ).slideToggle("slow")
     $( ".loginform" ).hide()
-  
+
   })
 
 })
@@ -60,7 +60,7 @@ function createListContent(content) {
 //   let $tweet = $('<article>')
 //   let $bubbleHeader = $('<header>')
 //   let $profilePicture = $('<img>').attr("src", tweet.user.avatars.small);
-//   let $username = $('<name>').text(tweet.user.name); 
+//   let $username = $('<name>').text(tweet.user.name);
 //   let $handle = $('<handle>').text(tweet.user.handle);
 //   let $tweetContent = $('<div>').text(tweet.content.text);
 //   let $bubbleFooter = $('<footer>')
@@ -70,11 +70,11 @@ function createListContent(content) {
 //   let $hiddenFlag = $('<span>').addClass('glyphicon glyphicon-flag')
 //   let $hiddenHeart = $('<span>').addClass('glyphicon glyphicon-heart')
 //   let $hiddenReblog = $('<span>').addClass('glyphicon glyphicon-retweet')
-  
+
 //   $bubbleHeader.append($profilePicture, $username, $handle)
 
 //   $bubbleFooter.append($createdAt, $hiddenReblog, $hiddenHeart, $hiddenFlag )
-  
+
 //   $tweet.append($bubbleHeader, $tweetContent, $bubbleFooter)
 
 //   return $tweet;

@@ -59,6 +59,12 @@ const { productCategory, movieCategory, foodCategory, bookCategory } = category(
 
 module.exports = category
 
+
+
+
+
+console.log(Date(Date.now()))
+
 // foodCategory().then((result) => { //We would pass in req.body.text as an argument
 //   if (result) {
 //     res.send('food') // Here, we would actually add the note to the database under the category
