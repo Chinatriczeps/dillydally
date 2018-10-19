@@ -77,31 +77,8 @@ app.post('/todo/:id/delete', (req, res) => {
 
 // Adding a new todo
 app.post('/todo/new', (req, res) => {
-  foodCategory(req.body.text)
-  .then((result) => {
-    if (result) {
-      res.send('food')
-    } else {
-      movieCategory(req.body.text)
-      .then((result) => {
-        if (result) {
-          res.send('movie')
-        } else {
-          bookCategory(req.body.text)
-          .then((result) => {
-            if (result) {
-              res.send('book')
-            } else {
-              productCategory(req.body.text)
-              .then((result) => {
-                res.send('product')
-              })
-            }
-          })
-        }
-      })
-    }
-  })
+  res.send('Todo new')
+
 })
 
 app.listen(PORT, () => {

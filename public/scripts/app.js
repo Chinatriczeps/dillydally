@@ -4,12 +4,13 @@ $(document).ready(function() {
   //Toggle register and login
   $( ".loginbutton" ).click(function() {
     $( ".loginform" ).slideToggle("slow")
+    $( ".registerform" ).hide()
    
   })
 
-
   $( ".registerbutton" ).click(function() {
     $( ".registerform" ).slideToggle("slow")
+    $( ".loginform" ).hide()
   
   })
 

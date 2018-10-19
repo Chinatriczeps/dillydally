@@ -44,11 +44,9 @@
         <div class="registerform">
           <!-- action='/tweets' Method='POST' -->
             <form action='/register' Method='POST'>
-              <h4>Username:</h4>
+              <h4>Register:</h4>
               <textarea type="text" placeholder="username"></textarea>
-              <h4>Email:</h4>
               <textarea type="text" placeholder="email"></textarea>
-              <h4>Password:</h4>
               <textarea type="text" placeholder="password"></textarea>
               <button>submit</button>
             </form>
@@ -63,35 +61,46 @@
   </nav>
 
   <body>
-
-      <form> 
-        <!-- action='/tweets' Method='POST' -->
-        <textarea name="text" placeholder="What were you recommnded?"></textarea>
-        <!-- <span class="emptyError">Please type !</span>
-        <span class="charError" >Meow has to many characters!</span> -->
-        <input type="submit" value="submit">
-      </form>
+   
+  
   <section class="itemList"> 
+<div class="container">
+  <div class="row">
 
-  <ul class="foods">
-      <h4>To Eat</h4>
-      <li>Testing</li>
-    </ul>
 
-    <ul class="products">
-      <h4>To Buy</h4>
-      <li>Testing</li>
-    </ul>
+          <form class="w-100" action='/todo/new' Method='POST'> 
+            <textarea name="text" placeholder="What were you recommnded?"></textarea>
+            <!-- <span class="emptyError">Please type !</span>
+            <span class="charError" >Meow has to many characters!</span> -->
+            <button>submit</button>
+          </form>
+        
+        
 
-    <ul class="movies">
-      <h4>To Watch</h4>
-      <li>Testing</li>
-    </ul>
+        <ul class="foods">
+            <h4>To Eat</h4>
+            <li>Testing</li>
+          </ul>
 
-    <ul class="books">
-      <h4>To Read</h4>
-      <li>Testing</li>
-    </ul> 
+        <ul class="products">
+            <h4>To Buy</h4>
+            <li>Testing</li>
+          </ul>
+
+        <ul class="movies">
+            <h4>To Watch</h4>
+            <li>Testing</li>
+          </ul>
+
+        <ul class="books">
+            <h4>To Read</h4>
+            <li>Testing</li>
+          </ul> 
+
+
+    </div>
+  </div>
+
 
   </section>
 
