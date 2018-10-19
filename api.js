@@ -5,14 +5,18 @@ const category = () => {
 
   const foodCategory = (input) => {
 
-   return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`, {
+    return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`, {
       headers: {
         'Authorization': `Bearer ${process.env.YELP_API}`
       }
     }).then((res) => {
       return res.json()
+    }).catch(err => {
+      console.log("Line 13, error", err);
     }).then((data) => {
       return data.count > 1
+    }).catch(err => {
+      console.log("Line 16 error", err);
     })
   }
 
@@ -21,9 +25,14 @@ const category = () => {
     return fetch(`http://www.omdbapi.com/?apikey=${process.env.MOVIE_API}&t=${input}`)
     .then((res) => {
       return res.json()
+    }).catch(err => {
+      console.log("Line 27, dude", err);
     }).then((data) => {
       return data.Response === 'True'
+    }).catch(err => {
+      console.log("Movie error", err);
     })
+
   }
 
   const productCategory = (input) => {
@@ -31,6 +40,8 @@ const category = () => {
     return fetch(`http://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&appid=${process.env.PRODUCT_API}&siteid=0&version=967&QueryKeywords=${input}&AvailableItemsOnly=true&MaxEntries=1`)
     .then((res) => {
       return res.json()
+    }).catch(err => {
+      console.log("Line 42", err);
     }).then((data) => {
       return !data.Errors
     })
@@ -40,8 +51,12 @@ const category = () => {
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=1&filter=full`)
     .then((res) => {
       return res.json()
+    }).catch(err => {
+      console.log("line 53", err);
     }).then((data) => {
       return data.totalItems > 0
+    }).catch(err => {
+      console.log("line 57", err);
     })
   }
 
