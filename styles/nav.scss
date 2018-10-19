@@ -1,5 +1,11 @@
 
- 
+ html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
  nav {
 
   height: 5em;
@@ -10,6 +16,8 @@
   top: 0;
   bottom: 0;
   z-index: 1;
+  overflow: visible;
+
 
   .header {
     line-height: 2.5em;
@@ -19,44 +27,25 @@
     font-size: 200%;
   }
 
-  button {
-      margin: 1em 0 0 1em ;
-      height: 2em;
-      width: 6em;
-      color: #9ACCD3;
-      border: 1px solid #000000;
-      background: #EBFAFD;
-      float: right;
-      padding: 0 0 0 0;
-      font-family: inherit;
-      font-size: 1em;
-      border-radius: 10px;
-  
-  }
-
-  button:hover {
-      background: #ffffff;
-  }
-
-  .glyphicon {
-      float: right;
-      color: red;
-      margin-top:4em;
-      // margin-right: 2em;
-
-  } 
-  
-  // .loginform {
-  //   display:none;
-
-  // }
-  .registrationform {
+ 
+  .loginform {
     display:none;
 
   }
-  .loginform, .registrationform {
-    float:right;
+  
+  .registerform {
+    display: none;
+
+  }
+
+  .loginform, .registerform {
+    float: right;
+    // top: 0;
+    // bottom: 0;
+
     margin-top: 5em;
+    // margin-left: 5em;
+    // margin-top: 3.65em;
     background: red;
     width: 250px;
     height: auto;
@@ -70,22 +59,39 @@
     }
     button {
       height: 1.5em;
-
+      margin-bottom: 1em;
     }
 
- 
+  }
+    button {
+      margin: 1em 0 0 1em ;
+      height: 2em;
+      width: 6em;
+      color: #9ACCD3;
+      border: 1px solid #000000;
+      background: #EBFAFD;
+      float: right;
+      padding: 0 0 0 0;
+      font-family: inherit;
+      font-size: 1em;
+      border-radius: 10px;
+      
+   
   }
 
+  button:hover {
+      background: #ffffff;
+  }
 
-
+  
 }
 
 @media screen 
 // and (min-width: 0px)
 and (max-width: 742px) {
 
-  nav .loginform, .registrationform {
-    margin-top: 0;
+  nav .loginform, .registerform {
+    margin-top: 5em;
   
     }
    

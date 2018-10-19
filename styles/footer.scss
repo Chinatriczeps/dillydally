@@ -1,4 +1,11 @@
 
+ html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
  footer {
   height: 5em;
   background: #9ACCD3;

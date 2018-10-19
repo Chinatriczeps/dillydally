@@ -26,36 +26,39 @@
   </head>
 
   <nav>
+      <span class="header">DillyDally</span>
+
+        <button class="registerbutton">register</button>
+        <button class="loginbutton">login</button>
+
+        <div class="loginform">
+          <!-- action='/tweets' Method='POST' -->
+          <form action='/login' Method='POST'>
+            <h4>Login:</h4>
+            <textarea type="text" placeholder="username"></textarea>
+            <textarea type="text" placeholder="password"></textarea>
+            <button>submit</button>
+          </form>
+        </div>
+    
+        <div class="registerform">
+          <!-- action='/tweets' Method='POST' -->
+            <form action='/register' Method='POST'>
+              <h4>Username:</h4>
+              <textarea type="text" placeholder="username"></textarea>
+              <h4>Email:</h4>
+              <textarea type="text" placeholder="email"></textarea>
+              <h4>Password:</h4>
+              <textarea type="text" placeholder="password"></textarea>
+              <button>submit</button>
+            </form>
+          </div>
+       
+    
     <!-- <span class="glyphicon glyphicon-tasks"> -->
-    <span class="header">DillyDally</span>
-    <button>register</button>
-    <button>login</button>
+
       
-    <div><span class="glyphicon glyphicon-arrow-up"></span><div>
-
-    <div class="loginform">
-      <!-- action='/tweets' Method='POST' -->
-      <form action='/login' Method='POST'>
-        <h4>Username:</h4>
-        <textarea type="text" placeholder="username"></textarea>
-        <h4>Password:</h4>
-        <textarea type="text" placeholder="password"></textarea>
-        <button>submit</button>
-      </form>
-    </div>
-
-    <div class="registrationform">
-      <!-- action='/tweets' Method='POST' -->
-        <form action='/register' Method='POST'>
-          <h4>Username:</h4>
-          <textarea type="text" placeholder="username"></textarea>
-          <h4>Email:</h4>
-          <textarea type="text" placeholder="email"></textarea>
-          <h4>Password:</h4>
-          <textarea type="text" placeholder="password"></textarea>
-          <button>submit</button>
-        </form>
-      </div>
+    <!-- <div><span class="glyphicon glyphicon-arrow-up"></span><div> -->
 
   </nav>
 
