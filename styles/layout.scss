@@ -17,14 +17,15 @@ html {
   border-radius: 10px;
 }
 
-// .row {
-
-// }
+.glyphicon {
+float: right;
+}
 
 body {
   background-color: #EEE;
   font-family: $font-stack;
   margin-top: 10em; 
+  margin-bottom: 10em;
   
 
   form {
