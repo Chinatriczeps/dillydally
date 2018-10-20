@@ -1,4 +1,4 @@
-<%= JSON.stringify(locals) %>
+<%= JSON.stringify(locals) %> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,10 +58,10 @@
           <button class="edituserbutton">edit user</button>
 
           <div class="edituserform">
-            <form action='/users/:id/edit' Method='POST'>
+            <form action='/users/<%= user.id %>/edit' Method='POST'>
               <h4>Edit User:</h4>
-              <textarea type="text" placeholder="new email"></textarea>
-              <input type="password" placeholder="new password">
+              <textarea type="text" placeholder="new email" name="email"></textarea>
+              <input type="password" placeholder="new password" name="password">
               <button>submit</button>
             </form>
           </div>
