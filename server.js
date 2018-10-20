@@ -160,43 +160,27 @@ app.post('/todo/new', (req, res) => {
   bookCategory(req.body.text)
   .then((result) => {
     if (result) {
-<<<<<<< HEAD
-      insertToCategory('Book', req.body.text).then(() => {
-=======
       insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
->>>>>>> b5d8a6144a8db7072039be43d79af88d5427e260
         res.redirect('/')
       })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
-<<<<<<< HEAD
-          insertToCategory('Film', req.body.text).then(() => {
-=======
           insertToCategory('Film', req.body.text, req.session.user_id).then(() => {
->>>>>>> b5d8a6144a8db7072039be43d79af88d5427e260
             res.redirect('/')
           })
         } else {
           foodCategory(req.body.text)
           .then((result) => {
             if (result) {
-<<<<<<< HEAD
-              insertToCategory('Food', req.body.text).then(() => {
-=======
               insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
->>>>>>> b5d8a6144a8db7072039be43d79af88d5427e260
                 res.redirect('/')
               })
             } else {
               productCategory(req.body.text)
               .then((result) => {
-<<<<<<< HEAD
-                insertToCategory('Product', req.body.text).then(() => {
-=======
                 insertToCategory('Product', req.body.text, req.session.user_id).then(() => {
->>>>>>> b5d8a6144a8db7072039be43d79af88d5427e260
                   res.redirect('/')
                 })
               })

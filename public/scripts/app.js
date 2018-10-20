@@ -44,8 +44,9 @@ $(document).ready(function() {
       let index = object.content
    
       let category = object.category
-        console.log(category, "cat")
-        ("." + category).append(index)
+      let $textContent = $('<li>').text(index)
+        // console.log(category, "cat")
+        $("." + category).append($textContent)
     
   }).then(function() {
 
