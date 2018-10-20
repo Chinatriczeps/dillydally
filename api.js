@@ -5,11 +5,8 @@ const category = () => {
 
   const foodCategory = (input) => {
 
-    return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`, {
-      headers: {
-        'Authorization': `Bearer ${process.env.YELP_API}`
-      }
-    }).then((res) => {
+    return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`)
+    .then((res) => {
       return res.json()
     }).catch(err => {
       console.log("Line 13, error", err);
