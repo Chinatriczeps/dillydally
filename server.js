@@ -123,7 +123,7 @@ app.post('/login', (req, res) => {
 
     return userMatch
   }).then((user) => {
-    if (user.password === password) {
+    if (bcrypt.compareSync(password, user.password)) {
       req.session.user_id = user.id
       res.redirect('/')
     } else {
