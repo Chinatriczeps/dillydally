@@ -19,13 +19,14 @@ $(document).ready(function() {
   })
 
   $( ".edituserbutton" ).click(function() {
-   
+    $( ".edituserform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".registerform" ).hide()
   })
 
- $("glyphicon glyphicon-edit").click(function() {
-   $( ".popup-content" ).addClass('active')
+ $(".glyphicon glyphicon-edit").click(function(e) {
+  //  $( ".popup-content" ).addClass('active')
+  console.log(e, "event")
 
  })
 
