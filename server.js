@@ -88,6 +88,8 @@ app.post('/register', (req, res) => {
       return knex('users').returning('*')
       .insert({name: name, email: email, password: bcrypt.hashSync(password, 10)})
     }
+  }).catch(err => {
+    console.log("line 83", err);
   }).then((user) => {
     if (user.length < 1) {
       res.send('A problem occurred trying to create the account!')
@@ -95,6 +97,8 @@ app.post('/register', (req, res) => {
     req.session.user_id = user[0].email
     res.redirect('/')
     return;
+  }).catch(err => {
+    console.log("line 91", err);
   })
 })
 
@@ -122,6 +126,8 @@ app.post('/login', (req, res) => {
     }
 
     return userMatch
+  }).catch(err => {
+    console.log("line 111", err);
   }).then((user) => {
     if (bcrypt.compareSync(password, user.password)) {
       req.session.user_id = user.id
@@ -130,13 +136,16 @@ app.post('/login', (req, res) => {
       res.send('Wrong email or password')
       return;
     }
+  }).catch(err => {
+    console.log("line 127", err);
   })
 
 })
 
 // Logout user
 app.post('/logout', (req, res) => {
-  res.send('Logged out')
+  req.session = null;
+  res.redirect('/');
 })
 
 // Edit user profile information
@@ -161,27 +170,27 @@ app.post('/todo/new', (req, res) => {
   .then((result) => {
     if (result) {
       insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
-        res.redirect('/')
+        res.status(200)
       })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
           insertToCategory('Film', req.body.text, req.session.user_id).then(() => {
-            res.redirect('/')
+            res.status(200)
           })
         } else {
           foodCategory(req.body.text)
           .then((result) => {
             if (result) {
               insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
-                res.redirect('/')
+                res.status(200)
               })
             } else {
               productCategory(req.body.text)
               .then((result) => {
                 insertToCategory('Product', req.body.text, req.session.user_id).then(() => {
-                  res.redirect('/')
+                  res.status(200)
                 })
               })
             }
