@@ -70,6 +70,7 @@ app.get("/", (req, res) => {
     knex.select('*').from('users')
     .where({id: req.session.user_id})
     .then((users) => {
+      console.log(users)
       if (users.length === 0) {
         res.render('index', {user: undefined});  // yes, user is undefined in this case
       } else {
@@ -110,7 +111,7 @@ app.post('/register', (req, res) => {
     if (user.length < 1) {
       res.send('A problem occurred trying to create the account!')
     }
-    req.session.user_id = user[0].email
+    req.session.user_id = user[0].id
     res.redirect('/')
     return;
   }).catch(err => {

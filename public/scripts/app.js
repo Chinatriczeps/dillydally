@@ -15,7 +15,7 @@ $(document).ready(function() {
     $( ".registerform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".edituserform" ).hide()
-  
+
   })
 
   $( ".edituserbutton" ).click(function() {
@@ -31,7 +31,7 @@ $(document).ready(function() {
  })
 
 
-  
+
 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
@@ -54,10 +54,10 @@ $(document).ready(function() {
       let $textContent = $('<li>').text(index)
       let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
       let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
-  
+
         $("." + category).append($textContent)
         $textContent.append($deleteButton, $editButton)
-    
+
   }).then(function() {
 
     //Reset input feild to default state
@@ -81,8 +81,8 @@ $(document).ready(function() {
 
 
       createListContent(category, content)
-   
-    
+
+
       }
     })
   };
@@ -98,7 +98,7 @@ getListContent()
     let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
     $('.' + category).append($textContent)
     $textContent.append($deleteButton, $editButton)
-   
+
 
     return content
 

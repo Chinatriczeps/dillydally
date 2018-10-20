@@ -5,8 +5,8 @@
     <title>DillyDally</title>
 
     <!-- External CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Externla CSS-->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -29,7 +29,7 @@
   <nav>
       <span class="header">DillyDally</span>
            <% if (!user) { %>
-        
+
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
@@ -70,17 +70,17 @@
 
   <body>
 
-        
+
 
           <div class="row">
 
-          <section class="itemList"> 
-          <form class="w-100" action='/todo/new' Method='POST'> 
+          <section class="itemList">
+          <form class="w-100" action='/todo/new' Method='POST'>
             <textarea name="text" placeholder="What were you recommnded?"></textarea>
             <button>submit</button>
           </form>
          <div> <span class="emptyError">Please type a recommendation!</span> </div>
-        
+
 
         <ul class="Food">
             <h4>To Eat</h4>
@@ -94,13 +94,13 @@
 
         <ul class="Film">
             <h4>To Watch</h4>
-      
+
           </ul>
 
         <ul class="Book">
             <h4>To Read</h4>
-        
-          </ul> 
+
+          </ul>
           <div class="popup-content">
             <h4>Edit Catagory</h4>
             <form class="editcategory" method='POST' action='/todo/:id/edit' >
@@ -109,10 +109,10 @@
               <button type='submit' name='Product'>Product</button>
               <button type='submit' name='Film'>Film</button>
               <button type='submit' name='Book'>Book</button>
-           
+
             </form>
-  
-            <button class="close">Close</button>    
+
+            <button class="close">Close</button>
         </div>
 
 
@@ -122,7 +122,7 @@
 
 
 
- 
+
 
   </body>
 
