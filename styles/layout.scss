@@ -8,9 +8,12 @@ html {
   box-sizing: inherit;
 }
 
-.container {
+.itemList {
+
   margin-top: 8em;
-  width: 80em;
+  margin-left:auto;
+  margin-right:auto;
+  width: auto;
   height: auto;
   background: #ffffff;
   padding: 2em;
@@ -19,6 +22,10 @@ html {
 
 .glyphicon {
 float: right;
+border-radius: 50%;
+margin-left:3px;
+margin-right:3px;
+
 }
 
 body {
@@ -51,7 +58,7 @@ body {
 }
 
   ul {
-    width: 13em;
+    width: 15em;
     height: auto;
     background:lightgrey;
     border: black 10px;

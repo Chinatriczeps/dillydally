@@ -1,4 +1,4 @@
-<!-- <%= JSON.stringify(locals) %> -->
+<%= JSON.stringify(locals) %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,8 +28,8 @@
 
   <nav>
       <span class="header">DillyDally</span>
-
-      <%= locals.user %>
+           <% if (!user) { %>
+        
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
@@ -51,24 +51,27 @@
           </form>
         </div>
 
-         <button class='logoutbutton'>logout</button>
+        <% }else { %>
+        <div class="loggedin">  <%= user.name %></div>
+        <form class="logoutform" method='POST' action='/logout' >
+          <button type='submit' name='logout'>logout</button></form>
           <button class="edituserbutton">edit user</button>
 
           <div class="edituserform">
-            <form action='/:user/edit' Method='POST'>
+            <form action='/users/:id/edit' Method='POST'>
               <h4>Edit User:</h4>
               <textarea type="text" placeholder="new email"></textarea>
               <input type="password" placeholder="new password">
               <button>submit</button>
             </form>
           </div>
-
+<% } %>
   </nav>
 
   <body>
 
         
-        <div class="container">
+
           <div class="row">
 
           <section class="itemList"> 
@@ -98,13 +101,26 @@
             <h4>To Read</h4>
         
           </ul> 
+          <div class="popup-content">
+            <h4>Edit Catagory</h4>
+            <form class="editcategory" method='POST' action='/todo/:id/edit' >
+
+              <button type='submit' name='Food'>Food</button>
+              <button type='submit' name='Product'>Product</button>
+              <button type='submit' name='Film'>Film</button>
+              <button type='submit' name='Book'>Book</button>
+           
+            </form>
+  
+            <button class="close">Close</button>    
+        </div>
 
 
     </div>
   </div>
 
 
-  </section>
+
 
  
 

@@ -49,8 +49,17 @@
       background: #ffffff;
   }
 
+  form{
+    margin: 1.5em 0 0 0 ;
+    float: right;
+    padding: 0 0 0 0;
+
+  }
  }
 
+ .loggedin {
+float: center ;
+ }
 
 @media screen 
 and (max-width: 742px) {
