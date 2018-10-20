@@ -8,6 +8,8 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const cookieSession = require('cookie-session')
+const bcrypt      = require('bcrypt')
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
@@ -36,7 +38,14 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
+app.use(cookieSession({
+  name: 'session',
+  secret: 'a dog jumped over the fence'
+}))
+
 app.use(express.static("public"));
+
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
@@ -45,12 +54,12 @@ app.use('/api/todo', todoRoutes(knex));
 // Functions
 
 // Function to insert data to the right category
-const insertToCategory = (category, content) => {
+const insertToCategory = (category, content, user) => {
   return knex('todo').returning('*')
   .insert({
     content: content,
     category: category,
-    user_id: 1,
+    user_id: user,
     active: true
   })
 }
@@ -62,12 +71,67 @@ app.get("/", (req, res) => {
 
 // Register a new user
 app.post('/register', (req, res) => {
-  res.send('Registering user')
+  const { name, email, password } = req.body
+
+  if (name === '' || email === '' || password === '') {
+    res.send('All fields are required')
+    return;
+  }
+
+  knex('users').where({
+    email: email
+  }).first()
+  .then((foundUser) => {
+    if(foundUser) {
+      res.send('Email is already registered!')
+    } else {
+      return knex('users').returning('*')
+      .insert({name: name, email: email, password: bcrypt.hashSync(password, 10)})
+    }
+  }).then((user) => {
+    if (user.length < 1) {
+      res.send('A problem occurred trying to create the account!')
+    }
+    req.session.user_id = user[0].email
+    res.redirect('/')
+    return;
+  })
 })
 
 // Login user
 app.post('/login', (req, res) => {
-  res.send('Logged in')
+  const { email, password } = req.body
+
+  if (password === '' || email === "") {
+    res.send('Both the email and password fields are required')
+    return;
+  }
+
+  knex.select('id', 'email', 'password').from('users')
+  .then((arrOfUsers) => {
+    let userMatch;
+    arrOfUsers.forEach((user) => {
+      if (user.email === email) {
+        userMatch = user
+      }
+    })
+
+    if (userMatch === undefined) {
+      res.send('Wrong email or password')
+      return;
+    }
+
+    return userMatch
+  }).then((user) => {
+    if (user.password === password) {
+      req.session.user_id = user.id
+      res.redirect('/')
+    } else {
+      res.send('Wrong email or password')
+      return;
+    }
+  })
+
 })
 
 // Logout user
@@ -96,27 +160,27 @@ app.post('/todo/new', (req, res) => {
   bookCategory(req.body.text)
   .then((result) => {
     if (result) {
-      insertToCategory('Book', req.body.text).then(() => {
+      insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
         res.redirect('/')
       })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
-          insertToCategory('Film', req.body.text).then(() => {
+          insertToCategory('Film', req.body.text, req.session.user_id).then(() => {
             res.redirect('/')
           })
         } else {
           foodCategory(req.body.text)
           .then((result) => {
             if (result) {
-              insertToCategory('Food', req.body.text).then(() => {
+              insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
                 res.redirect('/')
               })
             } else {
               productCategory(req.body.text)
               .then((result) => {
-                insertToCategory('Product', req.body.text).then(() => {
+                insertToCategory('Product', req.body.text, req.session.user_id).then(() => {
                   res.redirect('/')
                 })
               })
@@ -129,5 +193,5 @@ app.post('/todo/new', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  console.log("App listening on port " + PORT);
 });
