@@ -1,23 +1,14 @@
- 
-  .loginform {
-    display:none;
 
-  }
-  
-  .registerform {
-    display: none;
-
-  }
-
-  .loginform, .registerform {
+  .loginform, .registerform, .edituserform{
     float: right;
     margin-top: 5em;
     padding: 1em;
     background: #9ACCD3;
     width: 175px;
     height: auto;
+    display: none;
 
-    textarea {
+    textarea, input {
       width: 150px;
     }
 

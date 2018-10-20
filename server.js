@@ -93,39 +93,40 @@ app.post('/todo/:id/delete', (req, res) => {
 
 // Adding a new todo
 app.post('/todo/new', (req, res) => {
-  bookCategory(req.body.text)
-  .then((result) => {
-    if (result) {
-      insertToCategory('Book', req.body.text).then(() => {
-        res.redirect('/')
-      })
-    } else {
-      movieCategory(req.body.text)
-      .then((result) => {
-        if (result) {
-          insertToCategory('Film', req.body.text).then(() => {
-            res.redirect('/')
-          })
-        } else {
-          foodCategory(req.body.text)
-          .then((result) => {
-            if (result) {
-              insertToCategory('Food', req.body.text).then(() => {
-                res.redirect('/')
-              })
-            } else {
-              productCategory(req.body.text)
-              .then((result) => {
-                insertToCategory('Product', req.body.text).then(() => {
-                  res.redirect('/')
-                })
-              })
-            }
-          })
-        }
-      })
-    }
-  })
+  res.send('posted')
+  // bookCategory(req.body.text)
+  // .then((result) => {
+  //   if (result) {
+  //     insertToCategory('Book', req.body.text).then(() => {
+  //       res.redirect('/')
+  //     })
+  //   } else {
+  //     movieCategory(req.body.text)
+  //     .then((result) => {
+  //       if (result) {
+  //         insertToCategory('Film', req.body.text).then(() => {
+  //           res.redirect('/')
+  //         })
+  //       } else {
+  //         foodCategory(req.body.text)
+  //         .then((result) => {
+  //           if (result) {
+  //             insertToCategory('Food', req.body.text).then(() => {
+  //               res.redirect('/')
+  //             })
+  //           } else {
+  //             productCategory(req.body.text)
+  //             .then((result) => {
+  //               insertToCategory('Product', req.body.text).then(() => {
+  //                 res.redirect('/')
+  //               })
+  //             })
+  //           }
+  //         })
+  //       }
+  //     })
+  //   }
+  // })
 })
 
 app.listen(PORT, () => {

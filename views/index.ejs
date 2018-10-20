@@ -1,3 +1,4 @@
+<!-- <%= JSON.stringify(locals) %> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,54 +28,53 @@
 
   <nav>
       <span class="header">DillyDally</span>
-
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
         <div class="loginform">
-          <!-- action='/tweets' Method='POST' -->
           <form action='/login' Method='POST'>
             <h4>Login:</h4>
-            <textarea type="text" placeholder="username"></textarea>
-            <textarea type="text" placeholder="password"></textarea>
+            <textarea type="text" name='email' placeholder="email"></textarea>
+            <input type="password" name='password' placeholder="password">
             <button>submit</button>
           </form>
         </div>
-    
         <div class="registerform">
-          <!-- action='/tweets' Method='POST' -->
-            <form action='/register' Method='POST'>
-              <h4>Register:</h4>
-              <textarea type="text" placeholder="username"></textarea>
-              <textarea type="text" placeholder="email"></textarea>
-              <textarea type="text" placeholder="password"></textarea>
+          <form action='/register' Method='POST'>
+            <h4>Register:</h4>
+            <textarea type="text" name='name' placeholder="username"></textarea>
+            <textarea type="text" name='email' placeholder="email"></textarea>
+            <input type="password" name='password' placeholder="password">
+            <button>submit</button>
+          </form>
+        </div>
+
+         <button class='logoutbutton'>logout</button>
+          <button class="edituserbutton">edit user</button>
+
+          <div class="edituserform">
+            <form action='/:user/edit' Method='POST'>
+              <h4>Edit User:</h4>
+              <textarea type="text" placeholder="new email"></textarea>
+              <input type="password" placeholder="new password">
               <button>submit</button>
             </form>
           </div>
-       
-    
-    <!-- <span class="glyphicon glyphicon-tasks"> -->
-
-      
-    <!-- <div><span class="glyphicon glyphicon-arrow-up"></span><div> -->
 
   </nav>
 
   <body>
-   
-  
-  <section class="itemList"> 
-<div class="container">
-  <div class="row">
 
+        
+        <div class="container">
+          <div class="row">
 
+          <section class="itemList"> 
           <form class="w-100" action='/todo/new' Method='POST'> 
             <textarea name="text" placeholder="What were you recommnded?"></textarea>
-            <!-- <span class="emptyError">Please type !</span>
-            <span class="charError" >Meow has to many characters!</span> -->
             <button>submit</button>
           </form>
-        
+         <div> <span class="emptyError">Please type a recommendation!</span> </div>
         
 
         <ul class="Food">
