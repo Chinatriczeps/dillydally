@@ -15,7 +15,7 @@ $(document).ready(function() {
     $( ".registerform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".edituserform" ).hide()
-  
+
   })
 
   $( ".edituserbutton" ).click(function() {
@@ -24,8 +24,14 @@ $(document).ready(function() {
     $( ".registerform" ).hide()
   })
 
+ $(".glyphicon glyphicon-edit").click(function(e) {
+  //  $( ".popup-content" ).addClass('active')
+  console.log(e, "event")
 
-  
+ })
+
+
+
 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
@@ -40,14 +46,18 @@ $(document).ready(function() {
 
     }).then(function () {
       $.ajax('/api/todo', { method: 'GET' }) .then(function (data) {
+
       let object = data[data.length - 1]
       let index = object.content
-   
       let category = object.category
+
       let $textContent = $('<li>').text(index)
-        // console.log(category, "cat")
+      let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+      let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
+
         $("." + category).append($textContent)
-    
+        $textContent.append($deleteButton, $editButton)
+
   }).then(function() {
 
     //Reset input feild to default state
@@ -58,23 +68,7 @@ $(document).ready(function() {
   })
 })
   })
-// function appendListContent(data) {
-//   for ( let itemID in data) {
 
-//       let category = data[itemID].category
-//       let content = data[itemID].content
-
-// let newItem = createListContent(content)
-
-// $('.' + category).append(newItem)
-//   }
-// }
-
-// function appendListContent() {
- 
-   
-//   });
-// }
 
   function getListContent(data) {
     $.ajax('/api/todo')
@@ -87,8 +81,8 @@ $(document).ready(function() {
 
 
       createListContent(category, content)
-   
-    
+
+
       }
     })
   };
@@ -101,9 +95,10 @@ getListContent()
 
     let $textContent = $('<li>').text(content)
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+    let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
     $('.' + category).append($textContent)
-    $textContent.append($editButton)
-   
+    $textContent.append($deleteButton, $editButton)
+
 
     return content
 
