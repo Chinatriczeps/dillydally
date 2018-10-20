@@ -66,8 +66,24 @@ const insertToCategory = (category, content, user) => {
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.user_id) {
+    knex.select('*').from('users')
+    .where({id: req.session.user_id})
+    .then((users) => {
+      if (users.length === 0) {
+        res.render('index', {user: undefined});  // yes, user is undefined in this case
+      } else {
+        res.render('index', {user: users[0]});
+      }
+    }).catch((err) => {
+      console.log(err);
+      res.render('index', {user: undefined});  // yes, user is undefined in this case
+    })
+  } else {
+    res.render('index', {user: undefined});  // yes, user is undefined in this case
+  }
 });
+
 
 // Register a new user
 app.post('/register', (req, res) => {

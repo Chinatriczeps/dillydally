@@ -1,4 +1,4 @@
-<!-- <%= JSON.stringify(locals) %> -->
+<%= JSON.stringify(locals) %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,8 +28,8 @@
 
   <nav>
       <span class="header">DillyDally</span>
-
-      <%= locals.user %>
+           <% if (!user) { %>
+        
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
@@ -51,6 +51,8 @@
           </form>
         </div>
 
+        <% }else { %>
+          <%= user.name %>
          <button class='logoutbutton'>logout</button>
           <button class="edituserbutton">edit user</button>
 
@@ -62,7 +64,7 @@
               <button>submit</button>
             </form>
           </div>
-
+<% } %>
   </nav>
 
   <body>
