@@ -70,13 +70,14 @@ app.get("/", (req, res) => {
     knex.select('*').from('users')
     .where({id: req.session.user_id})
     .then((users) => {
+      // console.log(users());
       if (users.length === 0) {
         res.render('index', {user: undefined});  // yes, user is undefined in this case
       } else {
         res.render('index', {user: users[0]});
       }
     }).catch((err) => {
-      console.log(err);
+      console.log("Line 79", err);
       res.render('index', {user: undefined});  // yes, user is undefined in this case
     })
   } else {
@@ -110,7 +111,7 @@ app.post('/register', (req, res) => {
     if (user.length < 1) {
       res.send('A problem occurred trying to create the account!')
     }
-    req.session.user_id = user[0].email
+    req.session.user_id = user[0].id
     res.redirect('/')
     return;
   }).catch(err => {
@@ -143,7 +144,7 @@ app.post('/login', (req, res) => {
 
     return userMatch
   }).catch(err => {
-    console.log("line 111", err);
+    console.log("line 147", err);
   }).then((user) => {
     if (bcrypt.compareSync(password, user.password)) {
       req.session.user_id = user.id
@@ -153,7 +154,7 @@ app.post('/login', (req, res) => {
       return;
     }
   }).catch(err => {
-    console.log("line 127", err);
+    console.log("line 157", err);
   })
 
 })
@@ -166,47 +167,74 @@ app.post('/logout', (req, res) => {
 
 // Edit user profile information
 app.post('/users/:id/edit', (req, res) => {
-  res.send('User updated')
+  knex('users').where({
+    id: req.params.id
+  }).update({
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 10)
+  }).then(() => {
+    res.redirect('/');
+    return;
+  }).catch(err => {
+    console.log("line 178", err);
+  })
 })
 
 // Editing category of each todo
 app.post('/todo/:id/edit', (req, res) => {
-  res.send('Todo updated')
+  // knex('todo').where({
+  //   id: req.body.id, 
+  //   category: req.body.category
+  // }).then(() => {
+  //   res.redirect('/');
+  // }).catch(err => {
+  //   console.log("Editing category of each todo", err);
+  // })
 })
 
 // Deleting a todo
 app.post('/todo/:id/delete', (req, res) => {
-  res.send('Todo deleted')
+  knex('todo').where({
+    id: req.params.id
+  }).del()
+    .then(() => {
+    res.redirect('/')
+  }).catch(err => {
+    console.log("line 196", err);
+  })
 })
 
 
 // Adding a new todo
 app.post('/todo/new', (req, res) => {
+  if(!req.body.text){
+    res.send('You must insert something')
+  }
   bookCategory(req.body.text)
   .then((result) => {
     if (result) {
       insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
-        res.redirect('/')
+        res.status(200).end()
       })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
           insertToCategory('Film', req.body.text, req.session.user_id).then(() => {
-            res.redirect('/')
+            res.status(200).end()
           })
         } else {
           foodCategory(req.body.text)
           .then((result) => {
             if (result) {
               insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
-                res.redirect('/')
+                res.status(200).end()
               })
             } else {
               productCategory(req.body.text)
               .then((result) => {
                 insertToCategory('Product', req.body.text, req.session.user_id).then(() => {
-                  res.redirect('/')
+                  res.status(200).end()
                 })
               })
             }
