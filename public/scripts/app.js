@@ -20,7 +20,6 @@ $(document).ready(function() {
     $( ".edituserform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".registerform" ).hide()
-    $( ".edituserform" ).hide()
   })
 
   $('.itemList form').on('submit', function(e) {
