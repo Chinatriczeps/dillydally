@@ -9,7 +9,7 @@ html {
 }
 
 .container {
-  margin: auto;
+  margin-top: 8em;
   width: 80em;
   height: auto;
   background: #ffffff;
@@ -31,13 +31,22 @@ body {
    
     
     textarea {
-     
       float: center;
+      margin-top: .1em;
       width: 300px;
       height: 24px;
       resize: none;
       margin-bottom: 1em;
   }
+
+  button {
+    margin: 0 0 0 1em;
+    float: none;
+  }
+}
+.emptyError {
+  display: none;
+
 }
 
   ul {

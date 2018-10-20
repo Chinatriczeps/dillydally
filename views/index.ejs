@@ -1,3 +1,4 @@
+<!-- <%= JSON.stringify(locals) %> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,12 +28,10 @@
 
   <nav>
       <span class="header">DillyDally</span>
-
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
         <div class="loginform">
-          <!-- action='/tweets' Method='POST' -->
           <form action='/login' Method='POST'>
             <h4>Login:</h4>
             <textarea type="text" placeholder="email" name="email"></textarea>
@@ -67,11 +66,12 @@
 <div class="container">
   <div class="row">
 
+        
+        <div class="container">
+          <div class="row">
 
           <form class="w-100" action='/todo/new' Method='POST'>
             <textarea name="text" placeholder="What were you recommnded?"></textarea>
-            <!-- <span class="emptyError">Please type !</span>
-            <span class="charError" >Meow has to many characters!</span> -->
             <button>submit</button>
           </form>
 
