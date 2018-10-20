@@ -1,5 +1,5 @@
 
-  .loginform, .registerform, .edituserform{
+  .loginform, .registerform, .edituserform {
     float: right;
     margin-top: 5em;
     padding: 1em;
@@ -21,3 +21,7 @@
       height: 1.5em;
     }
   }
+
+  .popup-content {
+    visibility:hidden;
+    }

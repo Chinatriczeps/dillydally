@@ -19,10 +19,15 @@ $(document).ready(function() {
   })
 
   $( ".edituserbutton" ).click(function() {
-    $( ".edituserform" ).slideToggle("slow")
+   
     $( ".loginform" ).hide()
     $( ".registerform" ).hide()
   })
+
+ $("glyphicon glyphicon-edit").click(function() {
+   $( ".popup-content" ).addClass('active')
+
+ })
 
 
   
@@ -40,16 +45,17 @@ $(document).ready(function() {
 
     }).then(function () {
       $.ajax('/api/todo', { method: 'GET' }) .then(function (data) {
-        
+
       let object = data[data.length - 1]
       let index = object.content
       let category = object.category
 
       let $textContent = $('<li>').text(index)
       let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+      let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
   
         $("." + category).append($textContent)
-        $textContent.append($editButton)
+        $textContent.append($deleteButton, $editButton)
     
   }).then(function() {
 
@@ -88,8 +94,9 @@ getListContent()
 
     let $textContent = $('<li>').text(content)
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+    let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
     $('.' + category).append($textContent)
-    $textContent.append($editButton)
+    $textContent.append($deleteButton, $editButton)
    
 
     return content
