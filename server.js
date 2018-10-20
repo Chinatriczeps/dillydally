@@ -170,27 +170,27 @@ app.post('/todo/new', (req, res) => {
   .then((result) => {
     if (result) {
       insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
-        res.status(200)
+        res.redirect('/')
       })
     } else {
       movieCategory(req.body.text)
       .then((result) => {
         if (result) {
           insertToCategory('Film', req.body.text, req.session.user_id).then(() => {
-            res.status(200)
+            res.redirect('/')
           })
         } else {
           foodCategory(req.body.text)
           .then((result) => {
             if (result) {
               insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
-                res.status(200)
+                res.redirect('/')
               })
             } else {
               productCategory(req.body.text)
               .then((result) => {
                 insertToCategory('Product', req.body.text, req.session.user_id).then(() => {
-                  res.status(200)
+                  res.redirect('/')
                 })
               })
             }

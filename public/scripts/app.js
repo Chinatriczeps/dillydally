@@ -40,13 +40,16 @@ $(document).ready(function() {
 
     }).then(function () {
       $.ajax('/api/todo', { method: 'GET' }) .then(function (data) {
+        
       let object = data[data.length - 1]
       let index = object.content
-   
       let category = object.category
+
       let $textContent = $('<li>').text(index)
-        // console.log(category, "cat")
+      let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+  
         $("." + category).append($textContent)
+        $textContent.append($editButton)
     
   }).then(function() {
 
@@ -58,23 +61,7 @@ $(document).ready(function() {
   })
 })
   })
-// function appendListContent(data) {
-//   for ( let itemID in data) {
 
-//       let category = data[itemID].category
-//       let content = data[itemID].content
-
-// let newItem = createListContent(content)
-
-// $('.' + category).append(newItem)
-//   }
-// }
-
-// function appendListContent() {
- 
-   
-//   });
-// }
 
   function getListContent(data) {
     $.ajax('/api/todo')
