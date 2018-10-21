@@ -195,9 +195,9 @@ app.post('/todo/:id/edit', (req, res) => {
 
 // Deleting a todo
 app.post('/todo/:id/delete', (req, res) => {
-  knex('todo').where({
-    id: req.params.id
-  }).del()
+  console.log(req.params.id)
+  knex('todo').where('id', req.params.id)
+    .del()
     .then(() => {
     res.redirect('/')
   }).catch(err => {
