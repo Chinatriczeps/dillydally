@@ -1,32 +1,41 @@
-# Node Skeleton
+# Dilly Dally
 
-## Project Setup
+When you are recommended something it's not always easy to jot it down for later in an organized fashion. Adding the item to your phone or computer ends up taking time and opening up the right app is only part of the problem. You then have to locate the right list ("Movies to watch", "Books to read", etc.) to add to. And if you do get it in to the right list, you don't have much more context about it. This delay and lack of additional information acts as a huge deterrent.
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
-## Getting Started
+Each todo created should be categorized as one of:
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+Film / Series (To watch)
+Restaurants, cafes, etc. (To eat)
+Books (To read)
+Products (To buy)
+
+In order to determine the category the app will use API from Yelp, Good Reads, OpenMovie, and Ebay.
+
+Users are able to change a category of an item in case it was mis-categorized or could not be categorized at all.
+
+Users are able to register, log in, log out and update their profile.
+
+
+## Logging In
+!["Logging In"](https://i.gyazo.com/10e33540e29048ac69d0f9d1f102c79b.gif)
+## Adding List Item
+!["Adding List Item"](https://i.gyazo.com/31cfb8e8e2934124908553b1bf725afd.gif)
 
 ## Dependencies
 
 - Node 5.10.x or above
 - NPM 3.8.x or above
+- Bcrypt 2.0.0
+- Cookie-Session 2.0.0
 
+
+## Authors
+
+- ZoeElizabeth
+- 
+
+##Images Used
 <a href="https://www.freepik.com/free-vector/abstract-wave-background_1098456.htm">Designed by Freepik</a>
 <a href="https://www.freepik.com/free-vector/background-of-icons-and-list-of-elements-in-flat-design_1256961.htm">Designed by Freepik</a>

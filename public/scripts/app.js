@@ -26,6 +26,14 @@ $(document).ready(function() {
     $('.editcategory').empty()
   });
 
+  $(".loginform").on("submit", function(e) {
+    // e.preventDefault();
+    $.ajax('/login', { method: 'GET' }) .then(function (data) {
+
+    console.log(data)
+  })
+})
+
 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
@@ -74,6 +82,7 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
   
             $('.Food').append($addItem)
+          
   
           }).then(function() {
             $('.popup-content').hide()
@@ -98,6 +107,7 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
   
             $('.Product').append($addItem)
+            $addItem.append($deleteButton, $editButton)
   
           }).then(function() {
             $('.popup-content').hide()
@@ -122,6 +132,7 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
   
             $('.Film').append($addItem)
+            $addItem.append($deleteButton, $editButton)
   
           }).then(function() {
             $('.popup-content').hide()
@@ -129,7 +140,7 @@ $(document).ready(function() {
           })
   
           }))
-        let $bookList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','bookcate')
+        let $bookList = $('<button>').text('Book').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','bookcate')
         .click((function(e) {
           e.preventDefault();
           $.ajax('/todo/' + data[data.length - 1].id + '/edit', {
@@ -145,14 +156,16 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
   
             $('.Book').append($addItem)
+            $addItem.append($deleteButton, $editButton)
   
           }).then(function() {
             $('.popup-content').hide()
-  
+            $addItem.append($deleteButton, $editButton)
           })
   
   
           }))
+   
           $('.editcategory').empty()
         $('.editcategory').append($foodList, $productList, $filmList, $bookList)
   
@@ -193,23 +206,24 @@ $(document).ready(function() {
   })
 
 
-  function getListContent(data) {
-    $.ajax('/api/todo')
-    .then(function (data) {
-
-      for ( let itemID in data) {
-
-      let category = data[itemID].category
-      let content = data[itemID].content
-      let ID = data[itemID].id
-
-      createListContent(category, content, ID)
-
-      }
-    })
-  };
-
-getListContent()
+function getListContent(data) {
+  $.ajax(`/api/todo/${data}`)
+  .then(function (data) {
+    for ( let itemID in data) {
+    let category = data[itemID].category
+    let content = data[itemID].content
+    let ID = data[itemID].id
+    createListContent(category, content, ID)
+    }
+  })
+};
+function getLoggedInUser() {
+  $.ajax('/userid')
+  .then((result) => {
+    getListContent(result)
+  })
+}
+getLoggedInUser()
 
 
 
@@ -325,7 +339,7 @@ getListContent()
 
 
         }))
-        
+    
        
         $('.editcategory').empty() 
       
