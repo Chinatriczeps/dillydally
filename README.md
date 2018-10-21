@@ -28,4 +28,5 @@
 - Node 5.10.x or above
 - NPM 3.8.x or above
 
-<a href='https://www.freepik.com/free-vector/abstract-background-with-dots-and-lines_2348138.htm'>Designed by Freepik</a>
+<a href="https://www.freepik.com/free-vector/abstract-wave-background_1098456.htm">Designed by Freepik</a>
+<a href="https://www.freepik.com/free-vector/background-of-icons-and-list-of-elements-in-flat-design_1256961.htm">Designed by Freepik</a>

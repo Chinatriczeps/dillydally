@@ -25,10 +25,12 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
+  <img class="banner" src="/images/banner.png" >
 
-  <nav>
-      <span class="header">DillyDally</span>
            <% if (!user) { %>
+      <nav>
+          <img class="logo" src="/images/logo.png">   
+          <span class="header">DillyDally</span>
         
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
@@ -50,11 +52,13 @@
             <button>submit</button>
           </form>
         </div>
+      </nav>
+        <body><h1 class="loginplease">Please Login to see you recommendations</p> <img class="splash" src="/images/splash.png"> </body>
 
-        <body> </body>
-
-        <% }else { %>
-   
+        <% } else { %>
+          <nav>
+              <img class="logo" src="/images/logo.png">   
+              <span class="header">DillyDally</span>
         <form class="logoutform" method='POST' action='/logout' >
           <button type='submit' name='logout'>logout</button></form>
           <button class="edituserbutton">edit user</button>
@@ -67,8 +71,9 @@
               <button>submit</button>
             </form>
           </div>
-
+        
   </nav>
+ 
   <body>
   <section class="itemList"> 
       <div class="loggedin"> Welcome, <%= user.name %></div>
@@ -115,12 +120,18 @@
   </div>
 </div>
 </body>
-
 <% } %>
-
-
-      
+<img class="footerimg" src="/images/footer.png" >   
 <footer> </footer>
+
+
+
+
+
+
+
+
+
 </html>
 
 

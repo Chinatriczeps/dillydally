@@ -6,10 +6,17 @@
   box-sizing: inherit;
 }
 
+.logo {
+  float:left;
+  height: 4em;
+  width: 4em;
+  margin: .5em 1em 0 0;
+} 
+
  nav {
 
   height: 5em;
-  background: #9ACCD3;
+  background: #82CFE3;
   width: 100%;
   padding: 0 2em 0 2em;
   position: fixed;
@@ -23,11 +30,8 @@
     line-height: 2.5em;
     float: left;
     color: #e8fdff;
-    margin-left: 1em;
     font-size: 200%;
   }
-
-
   
     button {
       margin: 1.5em 0 0 1em ;

@@ -42,7 +42,7 @@ $(document).ready(function() {
       let index = object.content
 
       let category = object.category
-      let $textContent = $('<li>').text(index)
+      let $textContent = $('<li>').text(index).attr('data-id', ID)
       let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
       .attr('data-id', data[data.length - 1].id)
       .click((function(e) {
@@ -58,7 +58,8 @@ $(document).ready(function() {
         })
       }))
 
-        $("." + category).append($textContent)
+      $('.' + category).append($textContent)
+      $textContent.append($deleteButton, $editButton)
 
   }).then(function() {
 
@@ -67,26 +68,9 @@ $(document).ready(function() {
      $('.w-100 textarea').empty();
      $('.emptyError').hide();
 
+      })
+    })
   })
-})
-  })
-// function appendListContent(data) {
-//   for ( let itemID in data) {
-
-//       let category = data[itemID].category
-//       let content = data[itemID].content
-
-// let newItem = createListContent(content)
-
-// $('.' + category).append(newItem)
-//   }
-// }
-
-// function appendListContent() {
-
-
-//   });
-// }
 
   function getListContent(data) {
     $.ajax('/api/todo')
@@ -113,7 +97,7 @@ getListContent()
 
   function createListContent(category, content, ID) {
 //creating list item
-    let $textContent = $('<li>').text(content)
+    let $textContent = $('<li>').text(content).attr('data-id', ID)
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
     .click((function(e) {
       e.preventDefault();
@@ -134,6 +118,7 @@ getListContent()
            })
           .then(function(e) {
           // $( "<li>" ).slice('data-id', ID)
+          $("ul li[data-id=" + e[0].id + "]").remove();
           console.log(e, "e")
 
 
