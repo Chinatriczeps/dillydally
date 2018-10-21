@@ -3,14 +3,41 @@ $primary-color:  #244751;
 
 html {
   box-sizing: border-box;
+  background: #ffffff;;
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
+h1 {
+color: $primary-color;
+font-family: $font-stack;
+margin-top: 7em;
+font-size: 250%;
+left:0;
+right:0 ;
+}
+
+.splash {
+height: 60em;
+padding: 5em 0 13em 0;
+
+}
+.col-sm {
+width: 33%
+
+}
+.banner {
+  width:100%;
+  position: fixed;
+  top: 5em;
+  bottom: 0;
+  z-index: 1;
+}
+
 .itemList {
 
-  margin-top: 8em;
+  margin-top: 15em;
   margin-left:auto;
   margin-right:auto;
   width: auto;
@@ -23,13 +50,23 @@ html {
 .glyphicon {
 float: right;
 border-radius: 50%;
-margin-left:3px;
-margin-right:3px;
+padding: 0 3px 0 3px;
+color: #9ACCD3;
+background: #ffffff;
+border-color: #ffffff
 
 }
 
+.glyphicon:hover {
+
+  color: #00647E;
+
+  
+  }
+
 body {
-  background-color: #EEE;
+
+
   font-family: $font-stack;
   margin-top: 10em; 
   margin-bottom: 10em;
@@ -42,15 +79,28 @@ body {
       float: center;
       margin-top: .1em;
       width: 300px;
-      height: 24px;
+      height: 25px;
       resize: none;
       margin-bottom: 1em;
   }
 
   button {
     margin: 0 0 0 1em;
+    height: 2em;
+    width: 6em;
     float: none;
+    color: #9ACCD3;
+    background: #EBFAFD;
+    border: 1px solid #000000;
+    font-family: inherit;
+    font-size: 1em;
+    border-radius: 10px;
   }
+  button:hover {
+    background: #ffffff;
+}
+
+
 }
 .emptyError {
   display: none;
@@ -60,22 +110,25 @@ body {
   ul {
     width: 15em;
     height: auto;
-    background:lightgrey;
-    border: black 10px;
+    // border: black 10px;
     float: left;
     padding: 0;
     margin: 1em;
 
     li {
       margin-left: 2em;
+      margin-top: .5em;
       
     }
 
     h4 {
-      background: grey;
+      background: #9ACCD3;
       width: 100%;
       font-family: $font-stack;
+      padding: .25em;
       margin: 0;
+      border-radius: 10px;
+      height: 1.5em;
 
     }
   }

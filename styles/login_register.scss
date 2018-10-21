@@ -1,23 +1,41 @@
+$font-stack:     'Fugaz One', cursive;
 
+.loggedin {
+font-size:200%;
+}
+  .popup-content {
+    font-family: $font-stack;
+    width: 35em;
+
+  h4 {
+    font-family: inherit;
+
+  }
+    button {
+      margin: .5em
+    }
+
+  }
+  
   .loginform, .registerform, .edituserform {
     float: right;
     margin-top: 5em;
     padding: 1em;
-    background: #9ACCD3;
-    width: 175px;
+    background: #82CFE3;
+    width: 200px;
     height: auto;
     display: none;
 
     textarea, input {
-      width: 150px;
+      width: 175px;
     }
 
     h4 {
       font-family: inherit;
     }
     button {
-   
-      margin: 0 0 1em 0;
+      float: right;
+      margin: 1em 0 0 0;
       height: 1.5em;
     }
   }
