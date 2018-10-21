@@ -16,7 +16,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const fetch       = require('node-fetch')
-const { foodCategory, movieCategory, productCategory, bookCategory } = require('./api.js')()
+const { foodCategory, movieCategory, productCategory, bookCategory, insertToCategory } = require('./api.js')(knex)
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -50,19 +50,6 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use('/api/todo', todoRoutes(knex));
-
-// Functions
-
-// Function to insert data to the right category
-const insertToCategory = (category, content, user) => {
-  return knex('todo').returning('*')
-  .insert({
-    content: content,
-    category: category,
-    user_id: user,
-    active: true
-  })
-}
 
 // Home page
 app.get("/", (req, res) => {
@@ -211,10 +198,10 @@ app.post('/todo/new', (req, res) => {
   if(!req.body.text){
     res.send('You must insert something')
   }
-  bookCategory(req.body.text)
+  foodCategory(req.body.text)
   .then((result) => {
     if (result) {
-      insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
+      insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
         res.status(200).end()
       })
     } else {
@@ -225,10 +212,10 @@ app.post('/todo/new', (req, res) => {
             res.status(200).end()
           })
         } else {
-          foodCategory(req.body.text)
+          bookCategory(req.body.text)
           .then((result) => {
             if (result) {
-              insertToCategory('Food', req.body.text, req.session.user_id).then(() => {
+              insertToCategory('Book', req.body.text, req.session.user_id).then(() => {
                 res.status(200).end()
               })
             } else {

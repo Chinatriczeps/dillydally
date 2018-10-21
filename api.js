@@ -1,17 +1,30 @@
 const fetch = require('node-fetch')
 require('dotenv').config();
 
-const category = () => {
+const category = (knex) => {
+
+  const insertToCategory = (category, content, user) => {
+    return knex('todo').returning('*')
+    .insert({
+      content: content,
+      category: category,
+      user_id: user,
+      active: true
+    })
+  }
 
   const foodCategory = (input) => {
 
-    return fetch(`https://www.food2fork.com/api/search?key=${process.env.FOOD_API}&q=${input}`)
+    return fetch(`https://api.yelp.com/v3/businesses/search?term=${input}&location=vancouver&categories=restaurants&limit=1`,
+      {
+        headers: {'Authorization': `Bearer ${process.env.YELP_API}` }
+      })
     .then((res) => {
       return res.json()
     }).catch(err => {
       console.log("Line 13, error", err);
     }).then((data) => {
-      return data.count > 1
+      return data.total > 0
     }).catch(err => {
       console.log("Line 16 error", err);
     })
@@ -61,7 +74,8 @@ const category = () => {
     foodCategory,
     movieCategory,
     productCategory,
-    bookCategory
+    bookCategory,
+    insertToCategory
   }
 
 }
