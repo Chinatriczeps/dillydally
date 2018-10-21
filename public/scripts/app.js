@@ -1,9 +1,6 @@
 
 $(document).ready(function() {
 
-  $( ".glyphicon" ).click(function() {
-    console.log('yes')
-  })
   //Toggle register and login
   $( ".loginbutton" ).click(function() {
     $( ".loginform" ).slideToggle("slow")
@@ -24,14 +21,9 @@ $(document).ready(function() {
     $( ".registerform" ).hide()
   })
 
- $(".glyphicon glyphicon-edit").click(function(e) {
-  //  $( ".popup-content" ).addClass('active')
-  console.log(e, "event")
-
- })
-
-
-  
+  $(".close" ).click(function() {
+    $('.popup-content').hide()
+  });
 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
@@ -53,7 +45,19 @@ $(document).ready(function() {
 
       let $textContent = $('<li>').text(index)
       let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
+      .attr('data-id', data[data.length - 1].id)
+      .click((function(e) {
+        e.preventDefault();
+        $('.popup-content').show()
+      
+       }))
       let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
+      .attr('data-id', data[data.length - 1].id)
+      .click((function(e) {
+        $.ajax('/'+ data[data.length - 1].id + '/delete', { method: 'POST' }) 
+        .then(function () {
+        })
+      }))
   
         $("." + category).append($textContent)
         $textContent.append($deleteButton, $editButton)
@@ -78,9 +82,11 @@ $(document).ready(function() {
 
       let category = data[itemID].category
       let content = data[itemID].content
+      let ID = data[itemID].id
+    
 
 
-      createListContent(category, content)
+      createListContent(category, content, ID)
    
     
       }
@@ -91,19 +97,106 @@ getListContent()
 
 
 
-  function createListContent(category, content) {
-
+  function createListContent(category, content, ID) {
+//creating list item
     let $textContent = $('<li>').text(content)
-    let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
-    let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
-    $('.' + category).append($textContent)
-    $textContent.append($deleteButton, $editButton)
-   
+    let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
+    .click((function(e) {
+      e.preventDefault();
+//creating edit features for list item
+      $('.popup-content').show()
 
-    return content
+      let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
+        .attr('name','foodcate')
+        .click((function(e) {
+          e.preventDefault();
+          $.ajax('/todo/' + ID + '/edit', {
+            method: 'POST',
+            id: ID,
+            catagory: 'Food'
+           })         
+          .then(function(e) {
+          $( "li" ).slice('data-id', ID)
+          console.log(e, "e")
 
-  };
 
+        })
+      
+          }))
+
+      let $productList = $('<button>').text('Buy').attr('data-id', ID).attr('type', 'submit').attr('name','productcate')
+      .click((function(e) {
+        e.preventDefault();
+        $.ajax('/todo/' + ID + '/edit', {
+          method: 'POST',
+          id: ID,
+          catagory: 'Product'
+         })         
+        .then(function(e) {
+        $( "li" ).slice('data-id', ID)
+        console.log(e, "e")
+
+
+      })
+    
+        }))
+      let $filmList = $('<button>').text('Watch').attr('data-id', ID).attr('type', 'submit').attr('name','filmcate')
+      .click((function(e) {
+        e.preventDefault();
+        $.ajax('/todo/' + ID + '/edit', {
+          method: 'POST',
+          id: ID,
+          catagory: 'Film'
+         })         
+        .then(function(e) {
+        $( "li" ).slice('data-id', ID)
+        console.log(e, "e")
+
+      })
+    
+        }))
+      let $bookList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
+      .click((function(e) {
+        e.preventDefault();
+        $.ajax('/todo/' + ID + '/edit', {
+          method: 'POST',
+          id: ID,
+          catagory: 'Book'
+         })         
+        .then(function(e) {
+        $( "li" ).slice('data-id', ID)
+        console.log(e, "e")
+
+ 
+      })
+    
+        }))
+        
+      $('.editcategory').append($foodList, $productList, $filmList, $bookList)
+      
+      // button html   <button type='submit' name='bookcate'>Book</button>
+      //add buttons to be gerated on command with item id
+    // .editcategory for append
+
+    //will i have to a .click on every $itemList for wanted effect?
+    //better method than current method
+     
+    
+    }))
+
+let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
+.attr('data-id', ID) 
+
+
+$('.' + category).append($textContent)
+$textContent.append($deleteButton, $editButton)
+
+
+return content
+
+
+
+}
 
 })
 
