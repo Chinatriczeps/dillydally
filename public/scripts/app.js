@@ -23,6 +23,7 @@ $(document).ready(function() {
 
   $(".close" ).click(function() {
     $('.popup-content').hide()
+    $('.editcategory').empty()
   });
 
 
@@ -53,8 +54,9 @@ $(document).ready(function() {
         e.preventDefault();
         console.log(e.timeStamp)
   //creating edit features for list item
-  
+        $('.itemname').empty(content)
         $('.popup-content').show()
+        $('.itemname').append(content)
         let $foodList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit')
           .attr('name','foodcate')
           .click((function(e) {
@@ -151,7 +153,7 @@ $(document).ready(function() {
   
   
           }))
-  
+          $('.editcategory').empty()
         $('.editcategory').append($foodList, $productList, $filmList, $bookList)
   
         // button html   <button type='submit' name='bookcate'>Book</button>
@@ -219,9 +221,8 @@ getListContent()
       e.preventDefault();
       
 //creating edit features for list item
-$('.itemname').empty(content)
+      $('.itemname').empty(content)
       $('.popup-content').show()
-  
       $('.itemname').append(content)
       
       let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
@@ -326,19 +327,9 @@ $('.itemname').empty(content)
         }))
         
        
-        $('.editcategory').empty()
-
-      
+        $('.editcategory').empty() 
       
       $('.editcategory').append($foodList, $productList, $filmList, $bookList)
-
-      // button html   <button type='submit' name='bookcate'>Book</button>
-      //add buttons to be gerated on command with item id
-    // .editcategory for append
-
-    //will i have to a .click on every $itemList for wanted effect?
-    //better method than current method
-
 
     }))
 
