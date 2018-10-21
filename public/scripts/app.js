@@ -25,6 +25,7 @@ $(document).ready(function() {
     $('.popup-content').hide()
   });
 
+
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
     let inputData = $('.itemList form').serialize();
@@ -216,10 +217,13 @@ getListContent()
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
     .click((function(e) {
       e.preventDefault();
-      console.log(e.timeStamp)
+      
 //creating edit features for list item
-
+$('.itemname').empty(content)
       $('.popup-content').show()
+  
+      $('.itemname').append(content)
+      
       let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
         .attr('name','foodcate')
         .click((function(e) {
@@ -237,6 +241,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Food').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -261,6 +266,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Product').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -285,6 +291,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Film').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -292,7 +299,7 @@ getListContent()
         })
 
         }))
-      let $bookList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
+      let $bookList = $('<button>').text('Book').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
       .click((function(e) {
         e.preventDefault();
         $.ajax('/todo/' + ID + '/edit', {
@@ -308,6 +315,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Book').append($addItem)
+             $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -316,7 +324,12 @@ getListContent()
 
 
         }))
+        
+       
+        $('.editcategory').empty()
 
+      
+      
       $('.editcategory').append($foodList, $productList, $filmList, $bookList)
 
       // button html   <button type='submit' name='bookcate'>Book</button>
