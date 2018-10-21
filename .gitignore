@@ -5,3 +5,4 @@ public/styles
 *.sqlite3
 secretkeys.txt
 public/.DS_Store
+.DS_Store
