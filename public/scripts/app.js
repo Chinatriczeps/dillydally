@@ -162,11 +162,10 @@ $(document).ready(function() {
             $('.popup-content').hide()
           })
 
-
           }))
    
           $('.editcategory').empty()
-        $('.editcategory').append($foodList, $productList, $filmList, $bookList)
+          $('.editcategory').append($foodList, $productList, $filmList, $bookList)
 
         // button html   <button type='submit' name='bookcate'>Book</button>
         //add buttons to be gerated on command with item id
