@@ -119,7 +119,7 @@ getListContent()
       e.preventDefault();
       console.log(e.timeStamp)
 //creating edit features for list item
- 
+
       $('.popup-content').show()
       let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
         .attr('name','foodcate')
@@ -131,7 +131,7 @@ getListContent()
             id: ID,
             catagory: 'Food',
             }
-           })         
+           })
           .then(function(e) {
           // $( "<li>" ).slice('data-id', ID)
           console.log(e, "e")
@@ -150,10 +150,10 @@ getListContent()
             id: ID,
             catagory: 'Product',
           }
-         })         
+         })
         .then(function(e) {
         // $( "<li>" ).slice('data-id', ID)
-        console.log(e, "e")
+        // console.log(e, "e")
 
 
       })
@@ -168,7 +168,7 @@ getListContent()
             id: ID,
             catagory: 'Film',
           }
-         })         
+         })
         .then(function(e) {
         // $( "<li>" ).remove(content)
         console.log(e, "e")
@@ -185,7 +185,7 @@ getListContent()
             id: ID,
             catagory: 'Book',
           }
-         })         
+         })
         .then(function(e) {
         // $( "<li>" ).slice('data-id', ID)
         console.log(e, "e")

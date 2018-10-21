@@ -182,13 +182,12 @@ app.post('/users/:id/edit', (req, res) => {
 
 // Editing category of each todo
 app.post('/todo/:id/edit', (req, res) => {
-  console.log(req.body)
-  knex('todo').where({
+  return knex('todo').returning('*').where({
     id: req.body.id,
   }).update({
     category: req.body.catagory
-  }).then(() => {
-    res.redirect('/');
+  }).then((result) => {
+    res.json(result)
   }).catch(err => {
     console.log("Editing category of each todo", err);
   })
