@@ -23,7 +23,10 @@ height: 60em;
 padding: 5em 0 13em 0;
 
 }
+.col-sm {
+width: 33%
 
+}
 .banner {
   width:100%;
   position: fixed;
@@ -34,7 +37,7 @@ padding: 5em 0 13em 0;
 
 .itemList {
 
-  margin-top: 20em;
+  margin-top: 15em;
   margin-left:auto;
   margin-right:auto;
   width: auto;
@@ -47,17 +50,25 @@ padding: 5em 0 13em 0;
 .glyphicon {
 float: right;
 border-radius: 50%;
-margin-left:3px;
-margin-right:3px;
+padding: 0 3px 0 3px;
+color: #9ACCD3;
+background: #ffffff;
+border-color: #ffffff
 
 }
 
+.glyphicon:hover {
+
+  color: #00647E;
+
+  
+  }
 
 body {
 
 
   font-family: $font-stack;
-  margin-top: 15em; 
+  margin-top: 10em; 
   margin-bottom: 10em;
   
 
@@ -88,6 +99,8 @@ body {
   button:hover {
     background: #ffffff;
 }
+
+
 }
 .emptyError {
   display: none;
@@ -97,8 +110,7 @@ body {
   ul {
     width: 15em;
     height: auto;
-    background:lightgrey;
-    border: black 10px;
+    // border: black 10px;
     float: left;
     padding: 0;
     margin: 1em;
@@ -110,10 +122,13 @@ body {
     }
 
     h4 {
-      background: grey;
+      background: #9ACCD3;
       width: 100%;
       font-family: $font-stack;
+      padding: .25em;
       margin: 0;
+      border-radius: 10px;
+      height: 1.5em;
 
     }
   }
