@@ -103,20 +103,23 @@ getListContent()
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
     .click((function(e) {
       e.preventDefault();
+      console.log(e.timeStamp)
 //creating edit features for list item
+ 
       $('.popup-content').show()
-
       let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
         .attr('name','foodcate')
         .click((function(e) {
           e.preventDefault();
           $.ajax('/todo/' + ID + '/edit', {
             method: 'POST',
+            data: {
             id: ID,
-            catagory: 'Food'
+            catagory: 'Food',
+            }
            })         
           .then(function(e) {
-          $( "li" ).slice('data-id', ID)
+          // $( "<li>" ).slice('data-id', ID)
           console.log(e, "e")
 
 
@@ -129,11 +132,13 @@ getListContent()
         e.preventDefault();
         $.ajax('/todo/' + ID + '/edit', {
           method: 'POST',
-          id: ID,
-          catagory: 'Product'
+          data: {
+            id: ID,
+            catagory: 'Product',
+          }
          })         
         .then(function(e) {
-        $( "li" ).slice('data-id', ID)
+        // $( "<li>" ).slice('data-id', ID)
         console.log(e, "e")
 
 
@@ -145,11 +150,13 @@ getListContent()
         e.preventDefault();
         $.ajax('/todo/' + ID + '/edit', {
           method: 'POST',
-          id: ID,
-          catagory: 'Film'
+          data: {
+            id: ID,
+            catagory: 'Film',
+          }
          })         
         .then(function(e) {
-        $( "li" ).slice('data-id', ID)
+        // $( "<li>" ).remove(content)
         console.log(e, "e")
 
       })
@@ -160,11 +167,13 @@ getListContent()
         e.preventDefault();
         $.ajax('/todo/' + ID + '/edit', {
           method: 'POST',
-          id: ID,
-          catagory: 'Book'
+          data: {
+            id: ID,
+            catagory: 'Book',
+          }
          })         
         .then(function(e) {
-        $( "li" ).slice('data-id', ID)
+        // $( "<li>" ).slice('data-id', ID)
         console.log(e, "e")
 
  

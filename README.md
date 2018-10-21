@@ -28,4 +28,4 @@
 - Node 5.10.x or above
 - NPM 3.8.x or above
 
-<a href='https://www.freepik.com/free-vector/abstract-modern-background-with-broken-polygonal-shapes_3190114.htm'>Designed by BiZkettE1</a>
+<a href='https://www.freepik.com/free-vector/abstract-background-with-dots-and-lines_2348138.htm'>Designed by Freepik</a>
