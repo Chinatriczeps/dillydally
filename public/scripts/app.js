@@ -23,7 +23,17 @@ $(document).ready(function() {
 
   $(".close" ).click(function() {
     $('.popup-content').hide()
+    $('.editcategory').empty()
   });
+
+  $(".loginform").on("submit", function(e) {
+    // e.preventDefault();
+    $.ajax('/login', { method: 'GET' }) .then(function (data) {
+
+    console.log(data)
+  })
+})
+
 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
@@ -52,8 +62,9 @@ $(document).ready(function() {
         e.preventDefault();
         console.log(e.timeStamp)
   //creating edit features for list item
-
+        $('.itemname').empty(content)
         $('.popup-content').show()
+        $('.itemname').append(content)
         let $foodList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit')
           .attr('name','foodcate')
           .click((function(e) {
@@ -71,7 +82,8 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
 
             $('.Food').append($addItem)
-
+          
+  
           }).then(function() {
             $('.popup-content').hide()
 
@@ -95,7 +107,8 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
 
             $('.Product').append($addItem)
-
+            $addItem.append($deleteButton, $editButton)
+  
           }).then(function() {
             $('.popup-content').hide()
 
@@ -119,14 +132,15 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
 
             $('.Film').append($addItem)
-
+            $addItem.append($deleteButton, $editButton)
+  
           }).then(function() {
             $('.popup-content').hide()
 
           })
 
           }))
-        let $bookList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','bookcate')
+        let $bookList = $('<button>').text('Book').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','bookcate')
         .click((function(e) {
           e.preventDefault();
           $.ajax('/todo/' + data[data.length - 1].id + '/edit', {
@@ -142,15 +156,16 @@ $(document).ready(function() {
             let $addItem = $('<li>').text(e[0].content)
 
             $('.Book').append($addItem)
-
+            $addItem.append($deleteButton, $editButton)
+  
           }).then(function() {
             $('.popup-content').hide()
-
           })
 
 
           }))
-
+   
+          $('.editcategory').empty()
         $('.editcategory').append($foodList, $productList, $filmList, $bookList)
 
         // button html   <button type='submit' name='bookcate'>Book</button>
@@ -190,23 +205,24 @@ $(document).ready(function() {
   })
 
 
-  function getListContent(data) {
-    $.ajax('/api/todo')
-    .then(function (data) {
-
-      for ( let itemID in data) {
-
-      let category = data[itemID].category
-      let content = data[itemID].content
-      let ID = data[itemID].id
-
-      createListContent(category, content, ID)
-
-      }
-    })
-  };
-
-getListContent()
+function getListContent(data) {
+  $.ajax(`/api/todo/${data}`)
+  .then(function (data) {
+    for ( let itemID in data) {
+    let category = data[itemID].category
+    let content = data[itemID].content
+    let ID = data[itemID].id
+    createListContent(category, content, ID)
+    }
+  })
+};
+function getLoggedInUser() {
+  $.ajax('/userid')
+  .then((result) => {
+    getListContent(result)
+  })
+}
+getLoggedInUser()
 
 
 
@@ -216,10 +232,12 @@ getListContent()
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
     .click((function(e) {
       e.preventDefault();
-      console.log(e.timeStamp)
+      
 //creating edit features for list item
-
+      $('.itemname').empty(content)
       $('.popup-content').show()
+      $('.itemname').append(content)
+      
       let $foodList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit')
         .attr('name','foodcate')
         .click((function(e) {
@@ -237,6 +255,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Food').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -261,6 +280,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Product').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -285,6 +305,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Film').append($addItem)
+          $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -292,7 +313,7 @@ getListContent()
         })
 
         }))
-      let $bookList = $('<button>').text('Eat').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
+      let $bookList = $('<button>').text('Book').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
       .click((function(e) {
         e.preventDefault();
         $.ajax('/todo/' + ID + '/edit', {
@@ -308,6 +329,7 @@ getListContent()
           let $addItem = $('<li>').text(e[0].content)
 
           $('.Book').append($addItem)
+             $addItem.append($deleteButton, $editButton)
 
         }).then(function() {
           $('.popup-content').hide()
@@ -316,16 +338,11 @@ getListContent()
 
 
         }))
-
+    
+       
+        $('.editcategory').empty() 
+      
       $('.editcategory').append($foodList, $productList, $filmList, $bookList)
-
-      // button html   <button type='submit' name='bookcate'>Book</button>
-      //add buttons to be gerated on command with item id
-    // .editcategory for append
-
-    //will i have to a .click on every $itemList for wanted effect?
-    //better method than current method
-
 
     }))
 

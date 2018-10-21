@@ -41,6 +41,7 @@
             <h4>Login:</h4>
             <textarea type="text" name='email' placeholder="email"></textarea>
             <input type="password" name='password' placeholder="password">
+            <span class="errormsg">Credtials Incorrect: <br> Try Again </span>
             <button>submit</button>
           </form>
         </div>
@@ -88,19 +89,23 @@
         <button>submit</button>
     </form>
    <div> <span class="emptyError">Please type a recommendation!</span> </div>
+   <div class="row">
 
-  <section class="popup-content">
-      <h4>Edit Catagory</h4>
+      <div class="col">
+      <section class="popup-content">
+      <h4>Edit Category For: </h4> <h5 class='itemname'></h5>
       <form class="editcategory" method='POST' action='/todo/:id/edit' >
 
 
-      </form>
-      <button class="close">Close</button>
-
+ 
+    </form> 
+    <button class="close">Close</button>
+  </div>
+  </div>
     </section>
 
 
-  <div class="row">
+  <div class="row2">
 
       <div class="col-sm-2">
       <ul class="Food">
