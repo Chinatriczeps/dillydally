@@ -32,7 +32,7 @@ const category = (knex) => {
 
   const movieCategory = (input) => {
 
-    return fetch(`http://www.omdbapi.com/?apikey=${process.env.MOVIE_API}&t=${input}`)
+    return fetch(`http://www.omdbapi.com/?apikey=${process.env.MOVIE_API}&t=${input}&type=movie`)
     .then((res) => {
       return res.json()
     }).catch(err => {
@@ -77,49 +77,7 @@ const category = (knex) => {
     bookCategory,
     insertToCategory
   }
-
 }
 
-const { productCategory, movieCategory, foodCategory, bookCategory } = category()
-
-
 module.exports = category
-
-
-
-
-
-console.log(Date(Date.now()))
-
-// foodCategory().then((result) => { //We would pass in req.body.text as an argument
-//   if (result) {
-//     res.send('food') // Here, we would actually add the note to the database under the category
-//   } else {
-//     movieCategory().then((result) => {
-//       if (result) {
-//         res.send('movie')
-//       } else {
-//         res.send('not found')
-//       }
-//     })
-//   }
-// })
-
-// app.post('/new', (req, res) => {
-//   foodCategory(req.body.text)
-//   .then((result) => {
-//     if (result) {
-//       res.send('food')
-//     } else {
-//       movieCategory(req.body.text)
-//       .then((result) => {
-//         if(result) {
-//           res.send('movie')
-//         } else {
-//           res.send('not found')
-//         }
-//       })
-//     }
-//   })
-// })
 

@@ -33,7 +33,7 @@ $(document).ready(function() {
     if (content === null || content === ''){
       $('.emptyError').show('fast');
 
-    } else { 
+    } else {
       $.ajax('/todo/new', {
       method: 'POST',
       data: inputData,
@@ -52,7 +52,7 @@ $(document).ready(function() {
         e.preventDefault();
         console.log(e.timeStamp)
   //creating edit features for list item
-  
+
         $('.popup-content').show()
         let $foodList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit')
           .attr('name','foodcate')
@@ -69,16 +69,16 @@ $(document).ready(function() {
             // $( "<li>" ).slice('data-id', ID)
             $("ul li[data-id=" + e[0].id + "]").remove();
             let $addItem = $('<li>').text(e[0].content)
-  
+
             $('.Food').append($addItem)
-  
+
           }).then(function() {
             $('.popup-content').hide()
-  
+
           })
-  
+
             }))
-  
+
         let $productList = $('<button>').text('Buy').attr('data-id', ID).attr('type', 'submit').attr('name','productcate')
         .click((function(e) {
           e.preventDefault();
@@ -93,15 +93,15 @@ $(document).ready(function() {
             // $( "<li>" ).slice('data-id', ID)
             $("ul li[data-id=" + e[0].id + "]").remove();
             let $addItem = $('<li>').text(e[0].content)
-  
+
             $('.Product').append($addItem)
-  
+
           }).then(function() {
             $('.popup-content').hide()
-  
+
           })
-  
-  
+
+
           }))
         let $filmList = $('<button>').text('Watch').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','filmcate')
         .click((function(e) {
@@ -117,14 +117,14 @@ $(document).ready(function() {
             // $( "<li>" ).slice('data-id', ID)
             $("ul li[data-id=" + e[0].id + "]").remove();
             let $addItem = $('<li>').text(e[0].content)
-  
+
             $('.Film').append($addItem)
-  
+
           }).then(function() {
             $('.popup-content').hide()
-  
+
           })
-  
+
           }))
         let $bookList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit').attr('name','bookcate')
         .click((function(e) {
@@ -140,41 +140,41 @@ $(document).ready(function() {
             // $( "<li>" ).slice('data-id', ID)
             $("ul li[data-id=" + e[0].id + "]").remove();
             let $addItem = $('<li>').text(e[0].content)
-  
+
             $('.Book').append($addItem)
-  
+
           }).then(function() {
             $('.popup-content').hide()
-  
+
           })
-  
-  
+
+
           }))
-  
+
         $('.editcategory').append($foodList, $productList, $filmList, $bookList)
-  
+
         // button html   <button type='submit' name='bookcate'>Book</button>
         //add buttons to be gerated on command with item id
       // .editcategory for append
-  
+
       //will i have to a .click on every $itemList for wanted effect?
       //better method than current method
-  
-  
+
+
       }))
-       
+
       let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
       .attr('data-id', data[data.length - 1].id)
       .click((function(e) {
         e.preventDefault();
         $("ul li[data-id=" + data[data.length - 1].id + "]").remove();
-      
-      
+
+
         $.ajax('/todo/' + data[data.length - 1].id + '/delete', {
           method: 'POST'
          })
-      
-      
+
+
       }))
 
      $('.' + category).append($textContent)
@@ -330,7 +330,7 @@ getListContent()
     }))
 
 let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
-.attr('data-id', ID) 
+.attr('data-id', ID)
 .click((function(e) {
   e.preventDefault();
   $("ul li[data-id=" + ID + "]").remove();

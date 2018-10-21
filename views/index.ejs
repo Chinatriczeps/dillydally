@@ -30,9 +30,9 @@
 
            <% if (!user) { %>
       <nav>
-          <img class="logo" src="/images/logo.png">   
+          <img class="logo" src="/images/logo.png">
           <span class="header">DillyDally</span>
-        
+
         <button class="registerbutton">register</button>
         <button class="loginbutton">login</button>
 
@@ -59,11 +59,11 @@
                 <div class="row">
                   <div class="col"><h1 >Please Login <br> to see your <br> recommendations</h1></div>
                   <div class="col"><img class="splash" src="/images/splash.png"> </body></div>
-                </div> 
+                </div>
 
         <% } else { %>
           <nav>
-              <img class="logo" src="/images/logo.png">   
+              <img class="logo" src="/images/logo.png">
               <span class="header">DillyDally</span>
               <form class="logoutform" method='POST' action='/logout' >
                 <button type='submit' name='logout'>logout</button></form>
@@ -77,26 +77,26 @@
                     <button>submit</button>
                   </form>
                 </div>
-        
+
   </nav>
- 
+
   <body>
-  <section class="itemList"> 
+  <section class="itemList">
       <div class="loggedin"> Welcome, <%= user.name %></div>
-      <form class="w-100" action='/todo/new' Method='POST'> 
+      <form class="w-100" action='/todo/new' Method='POST'>
         <textarea name="text" placeholder="What were you recommnded?"></textarea>
         <button>submit</button>
     </form>
    <div> <span class="emptyError">Please type a recommendation!</span> </div>
-  
+
   <section class="popup-content">
       <h4>Edit Catagory</h4>
       <form class="editcategory" method='POST' action='/todo/:id/edit' >
-        
 
-      </form> 
-      <button class="close">Close</button>  
-   
+
+      </form>
+      <button class="close">Close</button>
+
     </section>
 
 
@@ -120,8 +120,8 @@
         <div class="col-sm-2">
       <ul class="Book">
           <h4>To Read</h4>
-      
-        </ul> 
+
+        </ul>
       </div>
 
   </div>
@@ -129,14 +129,14 @@
 </body>
 <% } %>
 
-<img class="footerimg" src="/images/footer.png" >   
+<img class="footerimg" src="/images/footer.png" >
 
 <footer>
   <a class="fb-ic mr-3"><i class="fa fa-lg fa-facebook"> </i></a>
   <a class="ins-ic mr-3"><i class="fa fa-lg fa-instagram"> </i></a>
   <a class="pin-ic mr-3"><i class="fa fa-lg fa-pinterest"> </i></a>
   <a class="tw-ic mr-3"><i class="fa fa-lg fa-twitter"></i> </a>
-  <a class="reddit-ic"><i class="fa fa-lg fa-reddit-alien"> </i></a> 
+  <a class="reddit-ic"><i class="fa fa-lg fa-reddit-alien"> </i></a>
    </footer>
 
 

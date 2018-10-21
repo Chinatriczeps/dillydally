@@ -16,7 +16,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const fetch       = require('node-fetch')
-const { foodCategory, movieCategory, productCategory, bookCategory, insertToCategory } = require('./api.js')(knex)
+const { foodCategory, movieCategory, productCategory, bookCategory, insertToCategory } = require('./api-functions/api.js')(knex)
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -50,6 +50,15 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use('/api/todo', todoRoutes(knex));
+
+// Route to grab current logged in user ID and send it to client side
+app.get('/userid', (req, res) => {
+  if (req.session.user_id) {
+    res.json(req.session.user_id)
+  } else {
+    res.send('Not avaiable')
+  }
+})
 
 // Home page
 app.get("/", (req, res) => {
@@ -182,14 +191,18 @@ app.post('/todo/:id/edit', (req, res) => {
 
 // Deleting a todo
 app.post('/todo/:id/delete', (req, res) => {
-  knex('todo').where({
-    id: req.params.id
-  }).del()
-    .then(() => {
-    res.redirect('/')
-  }).catch(err => {
-    console.log("line 196", err);
-  })
+  if (!req.session.user_id) {
+    res.send('No permission to do that!')
+  } else {
+    knex('todo').where({
+      id: req.params.id
+    }).del()
+      .then(() => {
+      res.redirect('/')
+    }).catch(err => {
+      console.log("line 196", err);
+    })
+  }
 })
 
 
