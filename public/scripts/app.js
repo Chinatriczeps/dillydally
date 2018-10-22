@@ -34,20 +34,6 @@ $(document).ready(function() {
   })
 })
 
-var request = $.ajax({
-  url: "/login",
-  type: "POST",
-  data: {id : menuId},
-  dataType: "html"
-});
-
-request.done(function(msg) {
-  console.log( msg );
-});
-
-request.fail(function(jqXHR, textStatus) {
-  console.log( "Request failed: " + textStatus );
-});
 
 
   $('.itemList form').on('submit', function(e) {

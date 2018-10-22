@@ -30,11 +30,11 @@ Users are able to register, log in, log out and update their profile.
 - Bcrypt 2.0.0
 - Cookie-Session 2.0.0
 
-
 ## Authors
 
+- LYunZhi
+- Chinatriczeps
 - ZoeElizabeth
-- 
 
 ##Images Used
 <a href="https://www.freepik.com/free-vector/abstract-wave-background_1098456.htm">Designed by Freepik</a>
