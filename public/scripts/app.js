@@ -1,40 +1,34 @@
 
 $(document).ready(function() {
 
-  //Toggle register and login
+  //Toggle login
   $( ".loginbutton" ).click(function() {
     $( ".loginform" ).slideToggle("slow")
     $( ".registerform" ).hide()
     $( ".edituserform" ).hide()
   })
 
+  //Toggle register
   $( ".registerbutton" ).click(function() {
     $( ".registerform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".edituserform" ).hide()
-
   })
 
+  //Toggle edit user
   $( ".edituserbutton" ).click(function() {
     $( ".edituserform" ).slideToggle("slow")
     $( ".loginform" ).hide()
     $( ".registerform" ).hide()
   })
 
+  //Close editcategory
   $(".close" ).click(function() {
     $('.popup-content').hide()
     $('.editcategory').empty()
   });
 
-  $(".loginform").on("submit", function(e) {
-    // e.preventDefault();
-    $.ajax('/login', { method: 'GET' }) .then(function (data) {
-
-    console.log(data)
-  })
-})
-
-
+  //Post New List Item to Form 
   $('.itemList form').on('submit', function(e) {
     e.preventDefault();
     let inputData = $('.itemList form').serialize();
@@ -49,22 +43,25 @@ $(document).ready(function() {
       data: inputData,
 
     }).then(function () {
+      //Render the new list item to list
       $.ajax('/api/todo', { method: 'GET' }) .then(function (data) {
+
       let object = data[data.length - 1];
       let index = object.content;
       let ID = object.id;
-
       let category = object.category
       let $textContent = $('<li>').text(index).attr('data-id', ID)
+
       let $editButton = $('<button>').addClass('glyphicon glyphicon-edit')
       .attr('data-id', data[data.length - 1].id)
       .click((function(e) {
         e.preventDefault();
-        console.log(e.timeStamp)
+  
   //creating edit features for list item
         $('.itemname').empty(content)
         $('.popup-content').show()
         $('.itemname').append(content)
+        //create popup buttons that can change the category 
         let $foodList = $('<button>').text('Eat').attr('data-id', data[data.length - 1].id).attr('type', 'submit')
           .attr('name','foodcate')
           .click((function(e) {
@@ -77,7 +74,7 @@ $(document).ready(function() {
               }
              })
             .then(function(e) {
-            // $( "<li>" ).slice('data-id', ID)
+          
             $("ul li[data-id=" + e[0].id + "]").remove();
             let $addItem = $('<li>').text(e[0].content)
 
@@ -162,20 +159,10 @@ $(document).ready(function() {
             $('.popup-content').hide()
           })
 
-
           }))
    
           $('.editcategory').empty()
-        $('.editcategory').append($foodList, $productList, $filmList, $bookList)
-
-        // button html   <button type='submit' name='bookcate'>Book</button>
-        //add buttons to be gerated on command with item id
-      // .editcategory for append
-
-      //will i have to a .click on every $itemList for wanted effect?
-      //better method than current method
-
-
+          $('.editcategory').append($foodList, $productList, $filmList, $bookList)
       }))
 
       let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
@@ -192,6 +179,10 @@ $(document).ready(function() {
 
       }))
 
+      //End of edit buttons
+
+      //Append New item to list
+
      $('.' + category).append($textContent)
           $textContent.append($deleteButton, $editButton)
     //Reset input feild to default state
@@ -199,12 +190,13 @@ $(document).ready(function() {
      $('.w-100 textarea').empty();
      $('.emptyError').hide();
 
-    })
-    })
+        })
+      })
     }
   })
 
 
+//Render list data on login with sorted per user
 function getListContent(data) {
   $.ajax(`/api/todo/${data}`)
   .then(function (data) {
@@ -225,9 +217,9 @@ function getLoggedInUser() {
 getLoggedInUser()
 
 
-
+//creating list item on render
   function createListContent(category, content, ID) {
-//creating list item
+
     let $textContent = $('<li>').text(content).attr('data-id', ID)
     let $editButton = $('<button>').addClass('glyphicon glyphicon-edit').attr('data-id', ID)
     .click((function(e) {
@@ -312,7 +304,7 @@ getLoggedInUser()
 
         })
 
-        }))
+      }))
       let $bookList = $('<button>').text('Book').attr('data-id', ID).attr('type', 'submit').attr('name','bookcate')
       .click((function(e) {
         e.preventDefault();
@@ -322,7 +314,7 @@ getLoggedInUser()
             id: ID,
             catagory: 'Book',
           }
-         })
+        })
          .then(function(e) {
           // $( "<li>" ).slice('data-id', ID)
           $("ul li[data-id=" + e[0].id + "]").remove();
@@ -331,20 +323,22 @@ getLoggedInUser()
           $('.Book').append($addItem)
              $addItem.append($deleteButton, $editButton)
 
-        }).then(function() {
-          $('.popup-content').hide()
+          }).then(function() {
+            $('.popup-content').hide()
 
-        })
+          })
 
 
         }))
     
-       
+       //Empty previous buttons rendered for list item
         $('.editcategory').empty() 
       
+        //append edited list item
       $('.editcategory').append($foodList, $productList, $filmList, $bookList)
 
     }))
+
 
 let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
 .attr('data-id', ID)
@@ -360,15 +354,16 @@ let $deleteButton = $('<button>').addClass('glyphicon glyphicon-remove')
 
 }))
 
-$('.' + category).append($textContent)
-$textContent.append($deleteButton, $editButton)
+//append content on render
+  $('.' + category).append($textContent)
+  $textContent.append($deleteButton, $editButton)
 
 
-return content
+  return content
 
 
 
-}
+  }
 
 })
 
