@@ -51,14 +51,6 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 app.use('/api/todo', todoRoutes(knex));
 
-// Route to grab current logged in user ID and send it to client side
-app.get('/userid', (req, res) => {
-  if (req.session.user_id) {
-    res.json(req.session.user_id)
-  } else {
-    res.send('Not avaiable')
-  }
-})
 
 // Home page
 app.get("/", (req, res) => {
@@ -81,6 +73,12 @@ app.get("/", (req, res) => {
   }
 });
 
+// Route to grab current logged in user ID and send it to client side
+app.get('/userid', (req, res) => {
+  if (req.session.user_id) {
+    res.json(req.session.user_id)
+  }
+})
 
 // Register a new user
 app.post('/register', (req, res) => {
