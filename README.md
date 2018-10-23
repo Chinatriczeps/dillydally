@@ -21,7 +21,7 @@ Users are able to register, log in, log out and update their profile.
 ## Logging In
 !["Logging In"](https://i.gyazo.com/10e33540e29048ac69d0f9d1f102c79b.gif)
 ## Adding List Item
-!["Adding List Item"](https://i.gyazo.com/31cfb8e8e2934124908553b1bf725afd.gif)
+!["Adding List Item"](https://i.gyazo.com/f8859d631a54abd6ab88664d91ec2010.gif)
 
 ## Dependencies
 
